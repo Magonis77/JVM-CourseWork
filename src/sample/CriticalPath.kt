@@ -1,3 +1,4 @@
+package sample/*
 import java.util.*
 import kotlin.collections.HashSet
 import kotlin.collections.Set
@@ -111,4 +112,4 @@ object CriticalPath {
             }
         }
     }
-}
+}*/
