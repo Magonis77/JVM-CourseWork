@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectSystem.HomeController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="754.0" prefWidth="1312.0" style="-fx-background-color: rgb(8, 8, 8);">
+         <children>
+            <AnchorPane prefHeight="695.0" prefWidth="157.0" style="-fx-background-color: rgb(13, 13, 13);">
+               <children>
+                  <JFXButton fx:id="exitBtn" layoutY="625.0" onAction="#extBtn" prefHeight="70.0" prefWidth="305.0" text="Exit" textFill="WHITE">
+                     <graphic>
+                        <MaterialDesignIconView fill="RED" glyphName="CLOSE" size="24" />
+                     </graphic>
+                     <font>
+                        <Font name="DejaVu Sans ExtraLight" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="newTeam" layoutX="-3.0" layoutY="412.0" onAction="#displayNewTeamSideBtn" prefHeight="70.0" prefWidth="308.0" text="    Create New Team" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Sans ExtraLight" size="20.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#00ff08" glyphName="ACCOUNT_MULTIPLE_PLUS" size="22" text="" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton layoutX="-3.0" layoutY="482.0" prefHeight="61.0" prefWidth="308.0" text="    Manage Teams" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Sans ExtraLight" size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_DOUBLE_RIGHT" size="24" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="newProject" layoutX="-3.0" layoutY="215.0" onAction="#displayNewProjectSideBtn" prefHeight="70.0" prefWidth="308.0" text="    Create New Project" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Sans ExtraLight" size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#00ff08" glyphName="PLUS_CIRCLE" size="20" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton layoutX="1.0" layoutY="285.0" prefHeight="61.0" prefWidth="305.0" text="    Manage Projects" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Sans ExtraLight" size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_DOUBLE_RIGHT" size="24" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton prefHeight="162.0" prefWidth="308.0" text=".">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PRODUCT_HUNT" size="70" stroke="BLACK" text="" wrappingWidth="67.0" />
+                     </graphic>
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="308.0" layoutY="-1.0" prefHeight="120.0" prefWidth="1004.0" style="-fx-background-color: rgb(0, 0, 0)rgb(0, 0, 0);">
+               <children>
+                  <Label layoutX="837.0" layoutY="59.0" text="Project Manager" textFill="WHITE" underline="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="828.0" layoutY="34.0" text="Access level:" textFill="#9e9e9e">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BELL" layoutX="786.0" layoutY="68.0" size="25" wrappingWidth="32.0" />
+                  <Label layoutX="201.0" layoutY="36.0" text="Project Management System" textFill="WHITE">
+                     <font>
+                        <Font name="DejaVu Sans ExtraLight" size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="695.0" prefHeight="9.0" prefWidth="295.0" style="-fx-background-color: rgb(0, 0, 0)rgb(0, 0, 0);" />
+            <JFXButton fx:id="newProjBigBtn" layoutX="428.0" layoutY="198.0" onAction="#displayNewProjectBigBtn" prefHeight="300.0" prefWidth="361.0" style="-fx-background-color: rgb(51, 204, 204);" text="Create New Project" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Sans ExtraLight" size="26.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="50" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="createTeamBigBtn" layoutX="826.0" layoutY="198.0" onAction="#displayNewTeamBigBtn" prefHeight="300.0" prefWidth="361.0" style="-fx-background-color: rgb(230, 184, 0);" text="Create New Team" textFill="WHITE">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_MULTIPLE_PLUS" size="50" />
+               </graphic>
+               <font>
+                  <Font name="DejaVu Sans ExtraLight" size="26.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="428.0" layoutY="530.0" prefHeight="134.0" prefWidth="361.0" style="-fx-background-color: rgb(0, 138, 230);" text="Manage Projects" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Sans ExtraLight" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="826.0" layoutY="530.0" prefHeight="134.0" prefWidth="361.0" style="-fx-background-color: rgb(179, 143, 0);" text="Manage Teams" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Sans ExtraLight" size="24.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
