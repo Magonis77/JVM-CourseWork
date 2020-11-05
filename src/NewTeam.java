@@ -24,7 +24,6 @@ public class NewTeam extends JFrame {
     private JList TeamMembers;
     private Teams teams;
     private CreateHandler createteam;
-    private MembersHandler createmember;
 
     NewTeam() {
         super("New Team Entry");
@@ -32,7 +31,7 @@ public class NewTeam extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
         createteam = new CreateHandler();
-        createmember = new MembersHandler();
+
 
         DefaultListModel liss = new DefaultListModel();
        String filePath = "selectedmembers.txt";
@@ -87,21 +86,19 @@ public class NewTeam extends JFrame {
         createTeamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                teams = createteam.createTeam(txtTeamTitle.getText());
+                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString() );
                 teams.toString();
+                liss.removeAllElements();
+                TeamMembers.setModel(liss);
+                txtTeamTitle.setText("");
             }
         });
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               teams = createmember.addMember(Comboboxmembers.getSelectedItem().toString());
-               teams.toString();
 
         String member = Comboboxmembers.getSelectedItem().toString();
-        System.out.println(member);
-
-                String  s = Comboboxmembers.getSelectedItem().toString();
-                liss.addElement(s);
+                liss.addElement(member);
                 TeamMembers.setModel(liss);
 
             }
