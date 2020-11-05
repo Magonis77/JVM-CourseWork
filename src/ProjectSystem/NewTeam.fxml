@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="557.0" style="-fx-background-color: rgb(8, 8, 8);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectSystem.NewTeamController">
+   <children>
+      <FontAwesomeIconView fill="WHITE" glyphName="PRODUCT_HUNT" layoutX="118.0" layoutY="95.0" size="70" stroke="BLACK" text="" wrappingWidth="67.0" />
+      <Label layoutX="212.0" layoutY="51.0" text="New Team Entry" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="33.0" />
+         </font>
+      </Label>
+      <JFXTextField focusColor="#77ffae" layoutX="218.0" layoutY="166.0" prefHeight="25.0" prefWidth="281.0" style="-fx-text-inner-color: WHITE;" />
+      <Label layoutX="83.0" layoutY="167.0" text="Team Title:" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="226.0" text="Assign Project" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="19.0" />
+         </font>
+      </Label>
+      <JFXComboBox focusColor="#77ffae" layoutX="218.0" layoutY="226.0" prefHeight="25.0" prefWidth="281.0" style="-fx-text-inner-color: white;" />
+      <Label layoutX="179.0" layoutY="335.0" text="Add Team Members:" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="19.0" />
+         </font>
+      </Label>
+      <JFXTextField focusColor="#77ffae" layoutX="138.0" layoutY="380.0" prefHeight="25.0" prefWidth="281.0" promptText="Enter the name and click add" style="-fx-text-inner-color: white;" />
+      <JFXButton layoutX="166.0" layoutY="430.0" prefHeight="40.0" prefWidth="225.0" text="Add" textFill="#00ff2f">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="19.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="#00ff08" glyphName="PLUS_CIRCLE" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="129.0" layoutY="563.0" prefHeight="87.0" prefWidth="300.0" style="-fx-background-color: rgb(0, 128, 0);" text="Create Team" textFill="WHITE">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="28.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="#00ff08" glyphName="PLUS_CIRCLE" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="returnBtn" onAction="#setReturnBtn" prefHeight="71.0" prefWidth="83.0" text=".">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="20.0" />
+         </font>
+         <graphic>
+            <MaterialDesignIconView fill="#ffa000" glyphName="ARROW_TOP_LEFT" size="30" />
+         </graphic>
+      </JFXButton>
+      <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_DOUBLE_RIGHT" layoutX="57.0" layoutY="187.0" size="24" />
+      <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_DOUBLE_RIGHT" layoutX="28.0" layoutY="247.0" size="24" />
+   </children>
+</AnchorPane>
