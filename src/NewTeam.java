@@ -4,12 +4,16 @@ import java.awt.event.ActionListener;
 
 public class NewTeam extends JFrame {
     private JTextField textField1;
-    private JTextField textField2;
     private JTextField textField3;
     private JButton addButton;
     private JButton createTeamButton;
     private JButton returnButton;
     private JPanel MainPnl;
+    private JComboBox projCombo;
+    private JPanel titlePnl;
+    private JPanel bottomPnl;
+    private JPanel infoPnl;
+    private JPanel membersPnl;
 
     NewTeam() {
         super("New Team Entry");

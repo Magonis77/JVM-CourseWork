@@ -22,7 +22,7 @@
             </constraints>
             <properties>
               <font size="24" style="1"/>
-              <text value="Manage Team"/>
+              <text value="Manage Teams"/>
             </properties>
           </component>
           <component id="c0a34" class="javax.swing.JButton" binding="returnButton" default-binding="true">

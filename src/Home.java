@@ -3,14 +3,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Home extends JFrame {
-    private JButton newProjectButton;
-    private JButton manageTeamsButton;
-    private JButton newTeamButton;
-    private JButton manageProjectButton;
-    private JButton createNewProjectButton;
-    private JButton createNewTeamButton;
-    private JButton manageProjectsButton;
-    private JButton manageTeamsButton1;
+    private JButton newProjectSideButton;
+    private JButton manageTeamsSideButton;
+    private JButton newTeamSideButton;
+    private JButton manageProjectSideButton;
+    private JButton createNewProjectBigButton;
+    private JButton createNewTeamBIgButton;
+    private JButton manageProjectsBigButton;
+    private JButton manageTeamsBigButton;
     private JPanel MainPnl;
     private JPanel TopPnl;
     private JPanel SidePnl;
@@ -23,18 +23,17 @@ public class Home extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
 
-        createNewProjectButton.addActionListener(new ActionListener() {
+        createNewProjectBigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            NewProject project = new NewProject();
-            project.setVisible(true);
-            project.setLocationRelativeTo(null);
-            project.setResizable(false);
-            dispose();
-
+                NewProject project = new NewProject();
+                project.setVisible(true);
+                project.setLocationRelativeTo(null);
+                project.setResizable(false);
+                dispose();
             }
         });
-        createNewTeamButton.addActionListener(new ActionListener() {
+        createNewTeamBIgButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 NewTeam nt = new NewTeam();
@@ -45,7 +44,7 @@ public class Home extends JFrame {
             }
         });
 
-        manageProjectsButton.addActionListener(new ActionListener() {
+        manageProjectsBigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ManageProjects mp = new ManageProjects();
@@ -55,7 +54,7 @@ public class Home extends JFrame {
                 dispose();
             }
         });
-        manageTeamsButton1.addActionListener(new ActionListener() {
+        manageTeamsBigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ManageTeams mt = new ManageTeams();
@@ -65,11 +64,57 @@ public class Home extends JFrame {
                 dispose();
             }
         });
+        newProjectSideButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewProject project = new NewProject();
+                project.setVisible(true);
+                project.setLocationRelativeTo(null);
+                project.setResizable(false);
+                dispose();
+            }
+        });
+        manageProjectSideButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ManageProjects mp = new ManageProjects();
+                mp.setVisible(true);
+                mp.setLocationRelativeTo(null);
+                mp.setResizable(false);
+                dispose();
+            }
+        });
+        newTeamSideButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NewTeam nt = new NewTeam();
+                nt.setVisible(true);
+                nt.setLocationRelativeTo(null);
+                nt.setResizable(false);
+                dispose();
+            }
+        });
+        manageTeamsSideButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ManageTeams mt = new ManageTeams();
+                mt.setVisible(true);
+                mt.setLocationRelativeTo(null);
+                mt.setResizable(false);
+                dispose();
+            }
+        });
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
     public static void main(String[] args) {
         Home home = new Home();
-        home.setBounds(1500,1500, 1200 ,900);
+        home.setBounds(1500, 1500, 1200, 900);
         home.setLocationRelativeTo(null);
         home.setResizable(false);
         home.setVisible(true);
