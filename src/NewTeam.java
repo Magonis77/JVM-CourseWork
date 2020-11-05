@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -17,8 +18,10 @@ public class NewTeam extends JFrame {
     private JPanel bottomPnl;
     private JPanel infoPnl;
     private JPanel membersPnl;
-    private JTable Team_Members;
     private JButton removeButton;
+    private JComboBox Comboboxmembers;
+    private JButton createMemberButton;
+    private JList TeamMembers;
     private Teams teams;
     private CreateHandler createteam;
     private MembersHandler createmember;
@@ -30,30 +33,44 @@ public class NewTeam extends JFrame {
         this.pack();
         createteam = new CreateHandler();
         createmember = new MembersHandler();
-        String filePath = "members.txt";
-        
-        try {
-            File file = new File(filePath);
-            PrintWriter writer = null;
+
+        DefaultListModel liss = new DefaultListModel();
+       String filePath = "selectedmembers.txt";
+        String filePath1 = "tempTeams.txt";
+       try {
+        File file = new File(filePath);
+           PrintWriter writer = null;
             writer = new PrintWriter(file);
-            writer.print("" + "\n");
-            writer.close();
+            writer.print("");
+           writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String filePath1 = "tempTeams.txt";
-
         try {
             File file = new File(filePath1);
             PrintWriter writer = null;
             writer = new PrintWriter(file);
-            writer.print("" + "\n");
+            writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
+            String filePath2 = "members.txt";
+            File file = new File(filePath2 );
 
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                Object[] lines = br.lines().toArray();
+
+                for(int i = 0; i < lines.length; i++){
+                    String line = lines[i].toString();
+                    Comboboxmembers.addItem(line);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+            }
 
 
         returnButton.addActionListener(new ActionListener() {
@@ -77,38 +94,34 @@ public class NewTeam extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               teams = createmember.addMember(txtAddMemberName.getText());
+               teams = createmember.addMember(Comboboxmembers.getSelectedItem().toString());
                teams.toString();
 
+        String member = Comboboxmembers.getSelectedItem().toString();
+        System.out.println(member);
 
-                String filePath = "members.txt";
-                File file = new File(filePath);
+                String  s = Comboboxmembers.getSelectedItem().toString();
+                liss.addElement(s);
+                TeamMembers.setModel(liss);
 
-                try {
-                    BufferedReader br = new BufferedReader(new FileReader(file));
-                    // get the first line
-                    // get the columns name from the first line
-                    // set columns name to the jtable model
-                    String firstLine = br.readLine().trim();
-                    String[] columnsName = firstLine.split(",");
-                    DefaultTableModel model = (DefaultTableModel)Team_Members.getModel();
-                    model.setColumnIdentifiers(columnsName);
-                    model.setRowCount(0);
-                    // get lines from txt file
-                    Object[] tableLines = br.lines().toArray();
-
-                    // extratct data from lines
-                    // set data to jtable model
-                    for(int i = 0; i < tableLines.length; i++)
-                    {
-                        String line = tableLines[i].toString().trim();
-                        String[] dataRow = line.split("/");
-                        model.addRow(dataRow);
-                    }
-
-
-                } catch (Exception ex) {
-
+            }
+        });
+        createMemberButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateMember nt = new CreateMember();
+                nt.setVisible(true);
+                nt.setLocationRelativeTo(null);
+                nt.setResizable(false);
+                dispose();
+            }
+        });
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = TeamMembers.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    liss.remove(selectedIndex);
                 }
             }
         });
