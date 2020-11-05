@@ -29,7 +29,7 @@ public class Home extends JFrame {
                 NewProject project = new NewProject();
                 project.setVisible(true);
                 project.setLocationRelativeTo(null);
-                project.setResizable(false);
+                project.setResizable(true);
                 dispose();
             }
         });
@@ -39,7 +39,7 @@ public class Home extends JFrame {
                 NewTeam nt = new NewTeam();
                 nt.setVisible(true);
                 nt.setLocationRelativeTo(null);
-                nt.setResizable(false);
+                nt.setResizable(true);
                 dispose();
             }
         });

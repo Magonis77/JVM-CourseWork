@@ -6,7 +6,7 @@ public class ManageProjects extends JFrame {
     private JButton editButton;
     private JPanel MainPnl;
     private JButton returnButton;
-    private JTable projTable;
+    private JComboBox comboBox1;
 
 
     ManageProjects() {

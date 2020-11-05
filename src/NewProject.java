@@ -7,13 +7,13 @@ public class NewProject extends JFrame {
     private JTextField projTitle;
     private JComboBox assigntoTeam;
     private JTextField assignTask;
-    private JComboBox taskDiff;
     private JComboBox taskComp;
     private JButton addTaskButton;
     private JButton returnButton;
     private JPanel MainPnl;
     private JTextField textField1;
     private JTextField textField2;
+    private JTable Tasks;
 
     NewProject() {
         super("New Project Entry");
@@ -43,13 +43,9 @@ public class NewProject extends JFrame {
     }
 
 
-
-
-
-
-
-
-
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
 
 

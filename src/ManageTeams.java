@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 public class ManageTeams extends JFrame {
     private JPanel MainPnl;
     private JButton editButton;
-    private JTable table1;
     private JButton returnButton;
+    private JComboBox comboBox1;
 
 
     ManageTeams() {
