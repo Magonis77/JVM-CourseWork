@@ -32,6 +32,21 @@ public class NewProject extends JFrame {
 
 
 
+
+        try {
+            String filePath2 = "Teams.txt";
+            File file = new File(filePath2 );
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            Object[] lines = br.lines().toArray();
+
+            for(int i = 0; i < lines.length; i++){
+                String line = lines[i].toString();
+                assigntoTeam.addItem(line);
+            }
+
+        } catch (FileNotFoundException ex) {
+
+        }
         try {
             File file = new File(filePath);
             PrintWriter writer = null;
