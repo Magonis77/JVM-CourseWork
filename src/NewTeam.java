@@ -7,6 +7,8 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+
+
 public class NewTeam extends JFrame {
     private JTextField txtTeamTitle;
     private JTextField txtAddMemberName;
@@ -35,14 +37,14 @@ public class NewTeam extends JFrame {
         createmember = new MembersHandler();
 
         DefaultListModel liss = new DefaultListModel();
-       String filePath = "selectedmembers.txt";
+        String filePath = "selectedmembers.txt";
         String filePath1 = "tempTeams.txt";
-       try {
-        File file = new File(filePath);
-           PrintWriter writer = null;
+        try {
+            File file = new File(filePath);
+            PrintWriter writer = null;
             writer = new PrintWriter(file);
             writer.print("");
-           writer.close();
+            writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -56,28 +58,28 @@ public class NewTeam extends JFrame {
             e.printStackTrace();
         }
 
-            String filePath2 = "members.txt";
-            File file = new File(filePath2 );
+        String filePath2 = "members.txt";
+        File file = new File(filePath2);
 
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                Object[] lines = br.lines().toArray();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            Object[] lines = br.lines().toArray();
 
-                for(int i = 0; i < lines.length; i++){
-                    String line = lines[i].toString();
-                    Comboboxmembers.addItem(line);
-                }
-
-            } catch (FileNotFoundException ex) {
-
+            for (int i = 0; i < lines.length; i++) {
+                String line = lines[i].toString();
+                Comboboxmembers.addItem(line);
             }
+
+        } catch (FileNotFoundException ex) {
+
+        }
 
 
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Home home = new Home();
-                home.setBounds(1500,1500, 1200 ,900);
+                home.setBounds(1500, 1500, 1200, 900);
                 home.setLocationRelativeTo(null);
                 home.setResizable(false);
                 home.setVisible(true);
@@ -94,13 +96,13 @@ public class NewTeam extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               teams = createmember.addMember(Comboboxmembers.getSelectedItem().toString());
-               teams.toString();
+                teams = createmember.addMember(Comboboxmembers.getSelectedItem().toString());
+                teams.toString();
 
-        String member = Comboboxmembers.getSelectedItem().toString();
-        System.out.println(member);
+                String member = Comboboxmembers.getSelectedItem().toString();
+                System.out.println(member);
 
-                String  s = Comboboxmembers.getSelectedItem().toString();
+                String s = Comboboxmembers.getSelectedItem().toString();
                 liss.addElement(s);
                 TeamMembers.setModel(liss);
 
@@ -125,7 +127,10 @@ public class NewTeam extends JFrame {
                 }
             }
         });
+
     }
+
+
         public static void main(String[] args) {
         NewTeam nt = new NewTeam();
         nt.setBounds(1500,1500, 1200 ,900);
