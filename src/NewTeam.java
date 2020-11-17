@@ -70,8 +70,7 @@ public class NewTeam extends JFrame {
         createTeamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String list = liss.toString(customers.toArray()).replace("[", "").replace("]", "");
-                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString().replaceAll("" , ",") );
+                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString());
                 teams.toString();
                 liss.removeAllElements();
                 TeamMembers.setModel(liss);

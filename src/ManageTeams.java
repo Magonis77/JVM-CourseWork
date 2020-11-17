@@ -27,6 +27,8 @@ public class ManageTeams extends JFrame {
         this.pack();
         createteam = new CreateHandler();
         DefaultListModel liss = new DefaultListModel();
+        File inputFile = new File("Teams.txt");
+        File tempFile = new File("TempTeams.txt");
         try {
             String filePath1 = "Teams.txt";
             File file = new File(filePath1);
@@ -92,30 +94,101 @@ public class ManageTeams extends JFrame {
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString() );
+                String member = liss.toString().replaceFirst("," , "").replaceFirst(" ", "");
+                teams = createteam.createTeam(txtTeamTitle.getText(),member );
                 teams.toString();
+                String abc = txtTeamTitle.getText() + member;
+                cbteams.addItem(abc);
                 liss.removeAllElements();
                 TeamMembers.setModel(liss);
                 txtTeamTitle.setText("");
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+                    int lineToRemove = cbteams.getSelectedIndex() + 1;
+                    String currentLine;
+                    int count = 0;
+
+                    while ((currentLine = reader.readLine()) != null) {
+                        count++;
+                        if (count == lineToRemove) {
+                            continue;
+                        }
+                        writer.write(currentLine + System.getProperty("line.separator"));
+                    }
+                    int index = cbteams.getSelectedIndex();
+                    cbteams.removeItemAt(index);
+                    liss.removeAllElements();
+                    TeamMembers.setModel(liss);
+                    txtTeamTitle.setText("");
+                    writer.close();
+                    reader.close();
+                    inputFile.delete();
+                    tempFile.renameTo(inputFile);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
+
         });
 
 
         deleteTeamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+                    int lineToRemove = cbteams.getSelectedIndex() + 1;
+                    String currentLine;
+                    int count = 0;
+
+                    while ((currentLine = reader.readLine()) != null) {
+                        count++;
+                        if (count == lineToRemove) {
+                            continue;
+                        }
+                        writer.write(currentLine + System.getProperty("line.separator"));
+                    }
+                    int index = cbteams.getSelectedIndex();
+                    cbteams.removeItemAt(index);
+                    teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString());
+                    teams.toString();
+                    liss.removeAllElements();
+                    TeamMembers.setModel(liss);
+                    txtTeamTitle.setText("");
+                    writer.close();
+                    reader.close();
+                    inputFile.delete();
+                    tempFile.renameTo(inputFile);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
 
             }
         });
         cbteams.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<String> al = new ArrayList<String>();
-                for(String str : split) {
-
-                    liss.addElement(str);
+                try {
+                    liss.removeAllElements();
                     TeamMembers.setModel(liss);
-                    System.out.println(str);
+                    ArrayList<String> al = new ArrayList<String>();
+                    String list = cbteams.getSelectedItem().toString();
+                    String split = list.replace("[", ",").replace("]", "").replace(" ", "");
+                    String[] everything = split.split(",");
+                    String test = everything[0];
+                    txtTeamTitle.setText(test);
+                    String[] members = split.replace(test, "").split(",");
+
+                    for (String str : members) {
+                        liss.addElement(str);
+                        TeamMembers.setModel(liss);
+                    }
+                } catch (Exception exception) {
+
                 }
             }
         });

@@ -1,3 +1,4 @@
-Team ABC [Jake, Adams, Anders]
-Team BAD [Hanks, Anders, Adams]
-Team Dream [Jake,,Mary,,Abby,,Jane]
+Team B [Mary, Jake, Abby, Arny]
+Team C [Arny, Jakinator, Jane]
+Team D [Jake, Jane, Abby, Arny]
+Team A [Jake, Jug, Jane, Jakinator, Mary]

@@ -43,9 +43,11 @@ public class NewProject extends JFrame {
                 String line = lines[i].toString();
                 assigntoTeam.addItem(line);
             }
-
+        br.close();
         } catch (FileNotFoundException ex) {
 
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         try {
             File file = new File(filePath);
