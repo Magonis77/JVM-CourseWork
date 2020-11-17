@@ -14,6 +14,13 @@ class MembersCreator() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+        try {
+            val writer = FileWriter("TempMembers.txt", true)
+            writer.write(name + "\n")
+            writer.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
 
         return CreateMembers(name = name)
     }

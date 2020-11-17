@@ -1,11 +1,9 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Scanner;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewTeam extends JFrame {
     private JTextField txtTeamTitle;
@@ -32,44 +30,30 @@ public class NewTeam extends JFrame {
         this.pack();
         createteam = new CreateHandler();
 
+        try{
+            try{
+                //File reader method
+                FileReader file = new FileReader("members.txt");
+                BufferedReader reader = new BufferedReader(file);
+                String text = "";
+                String line = reader.readLine();
+                while (line != null)
+                {
+                    Comboboxmembers.addItem(line);
+                    line = reader.readLine();
+
+                }
+                reader.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }catch (Exception e){//Catch exception if any
+            System.err.println("Error: " + e.getMessage());
+        }
 
         DefaultListModel liss = new DefaultListModel();
-       String filePath = "selectedmembers.txt";
-        String filePath1 = "tempTeams.txt";
-       try {
-        File file = new File(filePath);
-           PrintWriter writer = null;
-            writer = new PrintWriter(file);
-            writer.print("");
-           writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            File file = new File(filePath1);
-            PrintWriter writer = null;
-            writer = new PrintWriter(file);
-            writer.print("");
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
-            String filePath2 = "members.txt";
-            File file = new File(filePath2 );
 
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                Object[] lines = br.lines().toArray();
-
-                for(int i = 0; i < lines.length; i++){
-                    String line = lines[i].toString();
-                    Comboboxmembers.addItem(line);
-                }
-
-            } catch (FileNotFoundException ex) {
-
-            }
 
 
         returnButton.addActionListener(new ActionListener() {
@@ -86,7 +70,8 @@ public class NewTeam extends JFrame {
         createTeamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString() );
+                String list = liss.toString(customers.toArray()).replace("[", "").replace("]", "");
+                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString().replaceAll("" , ",") );
                 teams.toString();
                 liss.removeAllElements();
                 TeamMembers.setModel(liss);
@@ -106,10 +91,11 @@ public class NewTeam extends JFrame {
         createMemberButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateMember nt = new CreateMember();
+                EditMembers nt = new EditMembers();
                 nt.setVisible(true);
+                nt.setBounds(500,500, 900 ,700);
                 nt.setLocationRelativeTo(null);
-                nt.setResizable(false);
+                nt.setResizable(true);
                 dispose();
             }
         });

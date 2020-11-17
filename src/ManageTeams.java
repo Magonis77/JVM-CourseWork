@@ -1,10 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.util.ArrayList;
 
 public class ManageTeams extends JFrame {
     private JPanel MainPnl;
@@ -15,6 +13,10 @@ public class ManageTeams extends JFrame {
     private JComboBox Comboboxmembers;
     private JButton addButton;
     private JButton removeButton;
+    private JButton deleteTeamButton;
+    private JTextField txtTeamTitle;
+    private Teams teams;
+    private CreateHandler createteam;
 
 
     ManageTeams() {
@@ -23,42 +25,47 @@ public class ManageTeams extends JFrame {
         this.setContentPane(this.MainPnl);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
+        createteam = new CreateHandler();
         DefaultListModel liss = new DefaultListModel();
         try {
             String filePath1 = "Teams.txt";
-            File file = new File(filePath1 );
+            File file = new File(filePath1);
             BufferedReader br = new BufferedReader(new FileReader(file));
             Object[] lines = br.lines().toArray();
 
-            for(int i = 0; i < lines.length; i++){
+            for (int i = 0; i < lines.length; i++) {
                 String line = lines[i].toString();
                 cbteams.addItem(line);
             }
-
+            br.close();
         } catch (FileNotFoundException ex) {
 
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         String filePath2 = "members.txt";
-        File file = new File(filePath2 );
+        File file = new File(filePath2);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             Object[] lines = br.lines().toArray();
 
-            for(int i = 0; i < lines.length; i++){
+            for (int i = 0; i < lines.length; i++) {
                 String line = lines[i].toString();
                 Comboboxmembers.addItem(line);
             }
-
+    br.close();
         } catch (FileNotFoundException ex) {
 
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Home home = new Home();
-                home.setBounds(1500,1500, 1200 ,900);
+                home.setBounds(1500, 1500, 1200, 900);
                 home.setLocationRelativeTo(null);
                 home.setResizable(false);
                 home.setVisible(true);
@@ -76,18 +83,43 @@ public class ManageTeams extends JFrame {
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                int selectedIndex = TeamMembers.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    liss.remove(selectedIndex);
+                }
             }
         });
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString() );
+                teams.toString();
+                liss.removeAllElements();
+                TeamMembers.setModel(liss);
+                txtTeamTitle.setText("");
+            }
+        });
+
+
+        deleteTeamButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
             }
         });
+        cbteams.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<String> al = new ArrayList<String>();
+                for(String str : split) {
+
+                    liss.addElement(str);
+                    TeamMembers.setModel(liss);
+                    System.out.println(str);
+                }
+            }
+        });
     }
-
-
     public static void main(String[] args) {
         ManageTeams mt = new ManageTeams();
         mt.setBounds(1500,1500, 1200 ,900);
@@ -96,3 +128,4 @@ public class ManageTeams extends JFrame {
         mt.setVisible(true);
     }
 }
+
