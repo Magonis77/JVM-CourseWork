@@ -17,6 +17,9 @@ public class ManageTeams extends JFrame {
     private JTextField txtTeamTitle;
     private Teams teams;
     private CreateHandler createteam;
+    private members manager;
+    private ManageHandler managing;
+    private teamname gettingTN;
 
 
     ManageTeams() {
@@ -26,6 +29,8 @@ public class ManageTeams extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
         createteam = new CreateHandler();
+        managing = new ManageHandler();
+
         DefaultListModel liss = new DefaultListModel();
         File inputFile = new File("Teams.txt");
         File tempFile = new File("TempTeams.txt");
@@ -176,13 +181,11 @@ public class ManageTeams extends JFrame {
                     liss.removeAllElements();
                     TeamMembers.setModel(liss);
                     ArrayList<String> al = new ArrayList<String>();
-                    String list = cbteams.getSelectedItem().toString();
-                    String split = list.replace("[", ",").replace("]", "").replace(" ", "");
-                    String[] everything = split.split(",");
-                    String test = everything[0];
-                    txtTeamTitle.setText(test);
-                    String[] members = split.replace(test, "").split(",");
-
+                    manager = managing.sendlist(cbteams.getSelectedItem().toString());
+                    String test = manager.toString().replace("members(members=[" , "").replace("])" , "");
+                    String[] members = test.split(",");
+                    gettingTN = managing.getteamname(cbteams.getSelectedItem().toString());
+                    txtTeamTitle.setText(gettingTN.toString().replace("teamname(teamname=" , "").replace(")", ""));
                     for (String str : members) {
                         liss.addElement(str);
                         TeamMembers.setModel(liss);

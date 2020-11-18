@@ -28,6 +28,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewProject project = new NewProject();
                 project.setVisible(true);
+                project.setBounds(1500,1500, 1200 ,900);
                 project.setLocationRelativeTo(null);
                 project.setResizable(true);
                 dispose();
@@ -38,6 +39,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewTeam nt = new NewTeam();
                 nt.setVisible(true);
+                nt.setBounds(1500,1500, 1200 ,900);
                 nt.setLocationRelativeTo(null);
                 nt.setResizable(true);
                 dispose();
@@ -49,6 +51,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ManageProjects mp = new ManageProjects();
                 mp.setVisible(true);
+                mp.setBounds(1500,1500, 1200 ,900);
                 mp.setLocationRelativeTo(null);
                 mp.setResizable(false);
                 dispose();
@@ -59,6 +62,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ManageTeams mt = new ManageTeams();
                 mt.setVisible(true);
+                mt.setBounds(1500,1500, 1200 ,900);
                 mt.setLocationRelativeTo(null);
                 mt.setResizable(false);
                 dispose();
@@ -69,6 +73,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewProject project = new NewProject();
                 project.setVisible(true);
+                project.setBounds(1500,1500, 1200 ,900);
                 project.setLocationRelativeTo(null);
                 project.setResizable(false);
                 dispose();
@@ -79,6 +84,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ManageProjects mp = new ManageProjects();
                 mp.setVisible(true);
+                mp.setBounds(1500,1500, 1200 ,900);
                 mp.setLocationRelativeTo(null);
                 mp.setResizable(false);
                 dispose();
@@ -89,6 +95,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewTeam nt = new NewTeam();
                 nt.setVisible(true);
+                nt.setBounds(1500,1500, 1200 ,900);
                 nt.setLocationRelativeTo(null);
                 nt.setResizable(false);
                 dispose();
@@ -99,6 +106,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ManageTeams mt = new ManageTeams();
                 mt.setVisible(true);
+                mt.setBounds(1500,1500, 1200 ,900);
                 mt.setLocationRelativeTo(null);
                 mt.setResizable(false);
                 dispose();
