@@ -1,9 +1,8 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NewTeam extends JFrame {
     private JTextField txtTeamTitle;
@@ -18,8 +17,9 @@ public class NewTeam extends JFrame {
     private JPanel membersPnl;
     private JButton removeButton;
     private JComboBox Comboboxmembers;
-    private JButton createMemberButton;
+    private JButton editMemberButton;
     private JList TeamMembers;
+    private JButton confirmNameButton;
     private Teams teams;
     private CreateHandler createteam;
 
@@ -29,6 +29,9 @@ public class NewTeam extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
         createteam = new CreateHandler();
+
+        createTeamButton.setEnabled(false);
+
 
         try{
             try{
@@ -52,8 +55,6 @@ public class NewTeam extends JFrame {
         }
 
         DefaultListModel liss = new DefaultListModel();
-
-
 
 
         returnButton.addActionListener(new ActionListener() {
@@ -85,14 +86,17 @@ public class NewTeam extends JFrame {
                 liss.addElement(member);
                 TeamMembers.setModel(liss);
 
+
+
+
             }
         });
-        createMemberButton.addActionListener(new ActionListener() {
+        editMemberButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EditMembers nt = new EditMembers();
                 nt.setVisible(true);
-                nt.setBounds(500,500, 900 ,700);
+                nt.setBounds(500,500, 500 ,500);
                 nt.setLocationRelativeTo(null);
                 nt.setResizable(true);
                 dispose();
@@ -107,6 +111,7 @@ public class NewTeam extends JFrame {
                 }
             }
         });
+
     }
         public static void main(String[] args) {
         NewTeam nt = new NewTeam();

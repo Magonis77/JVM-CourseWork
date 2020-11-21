@@ -3,10 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ManageProjects extends JFrame {
-    private JButton editButton;
+    private JButton confirmButton;
     private JPanel MainPnl;
     private JButton returnButton;
     private JComboBox comboBox1;
+    private JButton removeButton;
 
 
     ManageProjects() {

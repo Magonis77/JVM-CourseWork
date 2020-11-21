@@ -59,6 +59,7 @@ public class EditMembers extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewTeam nt = new NewTeam();
                 nt.setVisible(true);
+                nt.setBounds(500,500, 600 ,600);
                 nt.setLocationRelativeTo(null);
                 nt.setResizable(true);
                 dispose();
@@ -93,6 +94,7 @@ public class EditMembers extends JFrame {
                     reader.close();
                     inputFile.delete();
                     tempFile.renameTo(inputFile);
+
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
