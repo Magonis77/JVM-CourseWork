@@ -61,7 +61,7 @@ public class EditMembers extends JFrame {
                 nt.setVisible(true);
                 nt.setBounds(500,500, 600 ,600);
                 nt.setLocationRelativeTo(null);
-                nt.setResizable(true);
+                nt.setResizable(false);
                 dispose();
             }
         });

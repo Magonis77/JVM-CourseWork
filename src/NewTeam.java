@@ -30,9 +30,6 @@ public class NewTeam extends JFrame {
         this.pack();
         createteam = new CreateHandler();
 
-        createTeamButton.setEnabled(false);
-
-
         try{
             try{
                 //File reader method

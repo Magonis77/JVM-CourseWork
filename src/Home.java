@@ -30,7 +30,7 @@ public class Home extends JFrame {
                 project.setVisible(true);
                 project.setBounds(500,500, 800 ,700);
                 project.setLocationRelativeTo(null);
-                project.setResizable(true);
+                project.setResizable(false);
                 dispose();
             }
         });
@@ -41,7 +41,7 @@ public class Home extends JFrame {
                 nt.setVisible(true);
                 nt.setBounds(500,500, 600 ,600);
                 nt.setLocationRelativeTo(null);
-                nt.setResizable(true);
+                nt.setResizable(false);
                 dispose();
             }
         });
@@ -97,7 +97,7 @@ public class Home extends JFrame {
                 mt.setVisible(true);
                 mt.setBounds(500,500, 600 ,600);
                 mt.setLocationRelativeTo(null);
-                mt.setResizable(true);
+                mt.setResizable(false);
                 dispose();
             }
         });
