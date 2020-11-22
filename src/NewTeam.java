@@ -68,11 +68,20 @@ public class NewTeam extends JFrame {
         createTeamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString());
-                teams.toString();
-                liss.removeAllElements();
-                TeamMembers.setModel(liss);
-                txtTeamTitle.setText("");
+
+                if (txtTeamTitle.getText().equals("")){
+                    JOptionPane optionPane = new JOptionPane("Please Enter Team Name!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Error!");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
+                else {
+                    teams = createteam.createTeam(txtTeamTitle.getText(), liss.toString());
+                    teams.toString();
+                    liss.removeAllElements();
+                    TeamMembers.setModel(liss);
+                    txtTeamTitle.setText("");
+                }
             }
         });
         addButton.addActionListener(new ActionListener() {
