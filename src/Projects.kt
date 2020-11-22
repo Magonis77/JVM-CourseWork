@@ -25,7 +25,7 @@ class MembersHandler2(){
 
         try {
             val writer = FileWriter("projects.txt", true)
-            writer.write(name + "\n")
+            writer.write(name + " " + "\n")
 
             writer.close()
         } catch (e: IOException) {

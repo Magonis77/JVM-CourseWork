@@ -13,8 +13,6 @@ public class NewProject extends JFrame {
     private JButton addTaskButton;
     private JButton returnButton;
     private JPanel MainPnl;
-    private JTextField textField1;
-    private JTextField textField2;
     private JTable Tasks;
     private Projects projects;
     private CreateHandler2 createprojectname;
@@ -29,8 +27,6 @@ public class NewProject extends JFrame {
         createprojectname = new CreateHandler2();
         assignteamname = new MembersHandler2();
         String filePath = "projects.txt";
-
-
 
 
         try {
@@ -70,11 +66,7 @@ public class NewProject extends JFrame {
             e.printStackTrace();
         }
 
-
-
-
-
-
+        DefaultTableModel liss = new DefaultTableModel();
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -94,6 +86,7 @@ public class NewProject extends JFrame {
                 projects.toString();
 
 
+
                 String filePath = "projects.txt";
                 File file = new File(filePath);
 
@@ -110,7 +103,7 @@ public class NewProject extends JFrame {
                     // get lines from txt file
                     Object[] tableLines = br.lines().toArray();
 
-                    // extratct data from lines
+                    // extract data from lines
                     // set data to jtable model
                     for(int i = 0; i < tableLines.length; i++)
                     {
@@ -130,6 +123,11 @@ public class NewProject extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 projects = createprojectname.createProject(projTitle.getText());
                 projects.toString();
+                liss.setRowCount(0);
+                liss.setColumnCount(0);
+                Tasks.setModel(liss);
+                projTitle.setText("");
+                assignTask.setText("");
             }
         });
     }

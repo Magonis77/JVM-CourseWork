@@ -1,6 +1,0 @@
-bigteam [Big John, Big Bruce, Big David, Big Pumber]
-team [Mary, Bob, Big John, Dom]
-gg []
- []
- []
-hi [Mary, Mary, Mary]
