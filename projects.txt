@@ -1,1 +1,2 @@
-
+Project A;team c [Arny, Mary, Michael, Dom];gui 55/ 5 days / 100%,and / 15 days / 1000 %,local / 15 days / 0 %,
+Project X;team c [Arny, Mary, Michael, Dom];Gui / 11 days /100 %,Functions / 12 days / 50 %,Testing / 15 days / 100 %,

@@ -93,24 +93,6 @@
               <text value="Assign Task:"/>
             </properties>
           </component>
-          <component id="c4f46" class="javax.swing.JComboBox" binding="taskComp">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13157828"/>
-              <foreground color="-1"/>
-              <model>
-                <item value="Select Option"/>
-                <item value="&lt; 1 Week"/>
-                <item value="1 - 2 Weeks"/>
-                <item value="3 - 4 Weeks"/>
-                <item value="4 - 5 Weeks"/>
-                <item value="6 - 7 Weeks"/>
-                <item value="&gt; 7 Weeks"/>
-              </model>
-            </properties>
-          </component>
           <component id="5e4b9" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -118,7 +100,7 @@
             <properties>
               <background color="-1443329"/>
               <foreground color="-1"/>
-              <text value="Task Completion:"/>
+              <text value="Task Completion(Days):"/>
             </properties>
           </component>
           <component id="d5de3" class="javax.swing.JButton" binding="addTaskButton" default-binding="true">
@@ -131,6 +113,16 @@
               <background color="-14124507"/>
               <foreground color="-15204608"/>
               <text value="Add Task"/>
+            </properties>
+          </component>
+          <component id="150a" class="javax.swing.JTextField" binding="txtDays">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value=""/>
             </properties>
           </component>
         </children>
@@ -188,20 +180,6 @@
           </component>
         </children>
       </grid>
-      <component id="f3264" class="javax.swing.JTable" binding="Tasks">
-        <constraints>
-          <grid row="1" column="3" row-span="3" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-14540254"/>
-          <foreground color="-589836"/>
-          <gridColor color="-3879731"/>
-          <selectionBackground color="-15987700"/>
-          <selectionForeground color="-1"/>
-        </properties>
-      </component>
       <component id="b4018" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="20" use-parent-layout="false"/>
@@ -213,6 +191,28 @@
           <text value="New Project Entry"/>
         </properties>
       </component>
+      <scrollpane id="9bebc">
+        <constraints>
+          <grid row="1" column="3" row-span="3" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="1457d" class="javax.swing.JTable" binding="TableTasks">
+            <constraints/>
+            <properties>
+              <background color="-14540254"/>
+              <cellSelectionEnabled value="false"/>
+              <columnSelectionAllowed value="false"/>
+              <enabled value="false"/>
+              <foreground color="-589836"/>
+              <gridColor color="-3879731"/>
+              <selectionBackground color="-15987700"/>
+              <selectionForeground color="-1"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

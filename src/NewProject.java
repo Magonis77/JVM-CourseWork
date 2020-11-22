@@ -3,20 +3,21 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.ArrayList;
 
 public class NewProject extends JFrame {
     private JButton createProjectButton;
     private JTextField projTitle;
     private JComboBox assigntoTeam;
     private JTextField assignTask;
-    private JComboBox taskComp;
     private JButton addTaskButton;
     private JButton returnButton;
     private JPanel MainPnl;
-    private JTable Tasks;
+    private JTable TableTasks;
+    private JTextField txtDays;
     private Projects projects;
-    private CreateHandler2 createprojectname;
-    private MembersHandler2 assignteamname;
+    private Tasks tasks;
+    private ProjectsHandler assignteamname;
 
 
     NewProject() {
@@ -24,14 +25,13 @@ public class NewProject extends JFrame {
         this.setContentPane(this.MainPnl);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
-        createprojectname = new CreateHandler2();
-        assignteamname = new MembersHandler2();
-        String filePath = "projects.txt";
-
+        ArrayList<String> Tasks = new ArrayList<String>();
+        assignteamname = new ProjectsHandler();
+        String filePath = "Tasks.txt";
+        String filePath2 = "Teams.txt";
 
         try {
-            String filePath2 = "Teams.txt";
-            File file = new File(filePath2 );
+            File file = new File(filePath2);
             BufferedReader br = new BufferedReader(new FileReader(file));
             Object[] lines = br.lines().toArray();
 
@@ -45,27 +45,16 @@ public class NewProject extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         try {
             File file = new File(filePath);
             PrintWriter writer = null;
             writer = new PrintWriter(file);
-            writer.print("" + "\n");
+            writer.print("Task Name, Days to complete, progress %" + "\n");
             writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String filePath1 = "tempProjects.txt";
-
-        try {
-            File file = new File(filePath1);
-            PrintWriter writer = null;
-            writer = new PrintWriter(file);
-            writer.print("" + "\n");
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
         DefaultTableModel liss = new DefaultTableModel();
 
         returnButton.addActionListener(new ActionListener() {
@@ -79,15 +68,16 @@ public class NewProject extends JFrame {
                 dispose();
             }
         });
+
         addTaskButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                projects = assignteamname.addMember(assignTask.getText());
-                projects.toString();
-
-
-
-                String filePath = "projects.txt";
+                String task = assignTask.getText() + " / " + txtDays.getText() + " days / " + "0 %";
+                Tasks.add(task);
+                tasks = assignteamname.addTasks(assignTask.getText(), txtDays.getText());
+                tasks.toString();
+                assignTask.setText("");
+                txtDays.setText("");
                 File file = new File(filePath);
 
                 try {
@@ -97,12 +87,12 @@ public class NewProject extends JFrame {
                     // set columns name to the jtable model
                     String firstLine = br.readLine().trim();
                     String[] columnsName = firstLine.split(",");
-                    DefaultTableModel model = (DefaultTableModel)Tasks.getModel();
+                   DefaultTableModel model = (DefaultTableModel)TableTasks.getModel();
                     model.setColumnIdentifiers(columnsName);
-                    model.setRowCount(0);
+                   model.setRowCount(0);
+
                     // get lines from txt file
                     Object[] tableLines = br.lines().toArray();
-
                     // extract data from lines
                     // set data to jtable model
                     for(int i = 0; i < tableLines.length; i++)
@@ -118,24 +108,54 @@ public class NewProject extends JFrame {
                 }
             }
         });
+
         createProjectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                projects = createprojectname.createProject(projTitle.getText());
+                projects = assignteamname.addProject(projTitle.getText(), assigntoTeam.getSelectedItem().toString(), Tasks.toString());
                 projects.toString();
-                liss.setRowCount(0);
-                liss.setColumnCount(0);
-                Tasks.setModel(liss);
                 projTitle.setText("");
                 assignTask.setText("");
+                try {
+                    File file = new File(filePath);
+                    PrintWriter writer = null;
+                    writer = new PrintWriter(file);
+                    writer.print("Task Name, Days to complete, progress %" + "\n");
+                    writer.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                File file = new File(filePath);
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    // get the first line
+                    // get the columns name from the first line
+                    // set columns name to the jtable model
+                    String firstLine = br.readLine().trim();
+                    String[] columnsName = firstLine.split(",");
+                    DefaultTableModel model = (DefaultTableModel)TableTasks.getModel();
+                    model.setColumnIdentifiers(columnsName);
+                    model.setRowCount(0);
+
+                    // get lines from txt file
+                    Object[] tableLines = br.lines().toArray();
+                    // extract data from lines
+                    // set data to jtable model
+                    for(int i = 0; i < tableLines.length; i++)
+                    {
+                        String line = tableLines[i].toString().trim();
+                        String[] dataRow = line.split("/");
+                        model.addRow(dataRow);
+                    }
+
+
+                } catch (Exception ex) {
+
+                }
             }
+
         });
     }
-
-
-
-
-
 
     public static void main(String[] args) {
         NewProject project = new NewProject();

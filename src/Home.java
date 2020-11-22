@@ -28,7 +28,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewProject project = new NewProject();
                 project.setVisible(true);
-                project.setBounds(500,500, 800 ,700);
+                project.setBounds(1500,1500, 1200 ,900);
                 project.setLocationRelativeTo(null);
                 project.setResizable(false);
                 dispose();
@@ -39,7 +39,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewTeam nt = new NewTeam();
                 nt.setVisible(true);
-                nt.setBounds(500,500, 600 ,600);
+                nt.setBounds(1500,1500, 1200 ,900);
                 nt.setLocationRelativeTo(null);
                 nt.setResizable(false);
                 dispose();
@@ -49,9 +49,9 @@ public class Home extends JFrame {
         manageProjectsBigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ManageProjects mp = new ManageProjects();
+                RecordProgress mp = new RecordProgress();
                 mp.setVisible(true);
-                mp.setBounds(500,500, 400 ,400);
+                mp.setBounds(1500,1500, 1200 ,900);
                 mp.setLocationRelativeTo(null);
                 mp.setResizable(false);
                 dispose();
@@ -62,7 +62,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ManageTeams mt = new ManageTeams();
                 mt.setVisible(true);
-                mt.setBounds(500,500, 600 ,600);
+                mt.setBounds(1500,1500, 1200 ,900);
                 mt.setLocationRelativeTo(null);
                 mt.setResizable(false);
                 dispose();
@@ -73,7 +73,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewProject project = new NewProject();
                 project.setVisible(true);
-                project.setBounds(500,500, 800 ,700);
+                project.setBounds(1500,1500, 1200 ,900);
                 project.setLocationRelativeTo(null);
                 project.setResizable(false);
                 dispose();
@@ -82,9 +82,9 @@ public class Home extends JFrame {
         manageProjectSideButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ManageProjects mp = new ManageProjects();
+                RecordProgress mp = new RecordProgress();
                 mp.setVisible(true);
-                mp.setBounds(500,500, 400 ,400);
+                mp.setBounds(1500,1500, 1200 ,900);
                 mp.setLocationRelativeTo(null);
                 mp.setResizable(false);
                 dispose();
@@ -95,7 +95,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewTeam mt = new NewTeam();
                 mt.setVisible(true);
-                mt.setBounds(500,500, 600 ,600);
+                mt.setBounds(1500,1500, 1200 ,900);
                 mt.setLocationRelativeTo(null);
                 mt.setResizable(false);
                 dispose();
@@ -106,7 +106,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ManageTeams mt = new ManageTeams();
                 mt.setVisible(true);
-                mt.setBounds(500,500, 600 ,600);
+                mt.setBounds(1500,1500, 1200 ,900);
                 mt.setLocationRelativeTo(null);
                 mt.setResizable(false);
                 dispose();

@@ -1,0 +1,4 @@
+Task Name, Days to complete, progress %
+gui 55/ 5 days / 100%
+and / 15 days / 1000 %
+local / 15 days / 0 %

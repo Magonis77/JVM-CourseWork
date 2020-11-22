@@ -9,7 +9,7 @@ data class members(var members: Array<String>){
 data class teamname(var teamname: String){
 
 }
-//val liss: DefaultListModel<*> = DefaultListModel<Any?>()
+
 class ManageHandler() {
     fun sendlist(listing: String= "Team"):members{
         var al = ArrayList<String>()
