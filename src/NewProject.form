@@ -81,6 +81,7 @@
             <properties>
               <background color="-13157828"/>
               <foreground color="-786437"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="96ad8" class="javax.swing.JLabel">

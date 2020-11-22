@@ -99,6 +99,7 @@ public class ManageTeams extends JFrame {
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String member = liss.toString().replaceFirst("," , "").replaceFirst(" ", "");
                 teams = createteam.createTeam(txtTeamTitle.getText(),member );
                 teams.toString();
@@ -133,8 +134,8 @@ public class ManageTeams extends JFrame {
                     tempFile.renameTo(inputFile);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
-                }
-            }
+
+            }}
 
         });
 

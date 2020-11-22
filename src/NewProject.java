@@ -55,7 +55,6 @@ public class NewProject extends JFrame {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        DefaultTableModel liss = new DefaultTableModel();
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -72,6 +71,19 @@ public class NewProject extends JFrame {
         addTaskButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (assignTask.getText().equals("")) {
+                    JOptionPane optionPane = new JOptionPane("Please Enter Task Name!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Error!");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
+                if (txtDays.getText().equals("")) {
+                    JOptionPane optionPane = new JOptionPane("Please Enter Task Completion in Days!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Error!");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
+                else{
                 String task = assignTask.getText() + " / " + txtDays.getText() + " days / " + "0 %";
                 Tasks.add(task);
                 tasks = assignteamname.addTasks(assignTask.getText(), txtDays.getText());
@@ -106,18 +118,34 @@ public class NewProject extends JFrame {
                 } catch (Exception ex) {
 
                 }
-            }
+            }}
         });
 
         createProjectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                StringBuffer sbTableData = new StringBuffer();
+                for(int row = 0; row < TableTasks.getRowCount(); row ++){
+                    for(int column = 0; column < TableTasks.getColumnCount(); column ++){
+                        sbTableData.append(TableTasks.getValueAt(row, column)).append("/");
+                    }
+
+                }
+                String edit = sbTableData.toString();
+                System.out.println(edit);
                 if (projTitle.getText().equals("")) {
                     JOptionPane optionPane = new JOptionPane("Please Enter Team Name!", JOptionPane.ERROR_MESSAGE);
                     JDialog dialog = optionPane.createDialog("Error!");
                     dialog.setAlwaysOnTop(true);
                     dialog.setVisible(true);
-                } else {
+                }
+                if(sbTableData == null || sbTableData.length() == 0){
+                    JOptionPane optionPane = new JOptionPane("Please Add Tasks!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Error!");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
+                else {
                     projects = assignteamname.addProject(projTitle.getText(), assigntoTeam.getSelectedItem().toString(), Tasks.toString());
                     projects.toString();
                     projTitle.setText("");

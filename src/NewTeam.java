@@ -75,6 +75,12 @@ public class NewTeam extends JFrame {
                     dialog.setAlwaysOnTop(true);
                     dialog.setVisible(true);
                 }
+                if (liss.isEmpty()) {
+                    JOptionPane optionPane = new JOptionPane("Please Add Team Members!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Error!");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                }
                 else {
                     teams = createteam.createTeam(txtTeamTitle.getText(), liss.toString());
                     teams.toString();
