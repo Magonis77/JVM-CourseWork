@@ -1,7 +1,39 @@
 import java.io.*
 
-
 fun main() {
+    try {
+        val file: File = File("CriticalPath.txt")
+        var writer: PrintWriter? = null
+        writer = PrintWriter(file)
+        writer.print(
+            "Task, Earliest Start , Earliest Finish , Latest Start, Latest Finish, Slack, Critical?"
+        )
+        writer.close()
+    } catch (e: FileNotFoundException) {
+        e.printStackTrace()
+    }
+    try {
+        val file: File = File("InitialNodes.txt")
+        var writer: PrintWriter? = null
+        writer = PrintWriter(file)
+        writer.print(
+            ""
+        )
+        writer.close()
+    } catch (e: FileNotFoundException) {
+        e.printStackTrace()
+    }
+    try {
+        val file: File = File("CriticalPathDays.txt")
+        var writer: PrintWriter? = null
+        writer = PrintWriter(file)
+        writer.print(
+            ""
+        )
+        writer.close()
+    } catch (e: FileNotFoundException) {
+        e.printStackTrace()
+    }
     val bufferedReader: BufferedReader = File("Tasks.txt").bufferedReader()
     val inputString = bufferedReader.use { it.readText() }
     val fileName :String = "Tasks.txt"
@@ -10,7 +42,7 @@ fun main() {
     File(fileName).readLines().forEach {
         i++
     }
-    println(i)
+    //println(i)
     if(i == 1){
         val befsplit = inputString.replace("%", "/")
         val split: List<String> = befsplit.split("/")
@@ -27,7 +59,7 @@ fun main() {
         val int1 = split[2].replace("days", "").replace(" ", "").toInt()
         val int2 = split[5].replace("days", "").replace(" ", "").toInt()
         val end = Task(split[4], int2)
-        val start = Task(split[1], int1,end)
+        val start = Task(split[1], int1, end)
 
         val allTasks = hashSetOf(end, start)
 
@@ -77,10 +109,10 @@ fun main() {
         val end = Task(split[13], int5)
         val A = Task(split[10], int4, end)
         val F = Task(split[7], int3, A)
-        val Q = Task(split[4], int2, F,A)
+        val Q = Task(split[4], int2, F, A)
         val start = Task(split[1], int1, Q)
 
-        val allTasks = hashSetOf(end, A, F,Q, start)
+        val allTasks = hashSetOf(end, A, F, Q, start)
 
         calculateCriticalPath(allTasks)
         prettyPrintResult(allTasks)
@@ -116,13 +148,13 @@ fun main() {
         val int6 = split[17].replace("days", "").replace(" ", "").toInt()
         val int7 = split[20].replace("days", "").replace(" ", "").toInt()
         val end = Task(split[19], int7)
-        val Z = Task(split[16], int6,end)
+        val Z = Task(split[16], int6, end)
         val F = Task(split[13], int5, end)
-        val A = Task(split[10], int4, F,Z)
-        val X = Task(split[7], int3, F, A,Z)
-        val Q = Task(split[4], int2, A, X,F)
+        val A = Task(split[10], int4, F, Z)
+        val X = Task(split[7], int3, F, A, Z)
+        val Q = Task(split[4], int2, A, X, F)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, Z,F,A,X,Q, start)
+        val allTasks = hashSetOf(end, Z, F, A, X, Q, start)
 
         calculateCriticalPath(allTasks)
         prettyPrintResult(allTasks)
@@ -139,14 +171,14 @@ fun main() {
         val int7 = split[20].replace("days", "").replace(" ", "").toInt()
         val int8 = split[23].replace("days", "").replace(" ", "").toInt()
         val end = Task(split[22], int8)
-        val G = Task(split[19], int7,end)
-        val Z = Task(split[16], int6,end)
-        val F = Task(split[13], int5, Z,G)
-        val A = Task(split[10], int4, F,Z)
-        val X = Task(split[7], int3, F, A,Z,G)
-        val Q = Task(split[4], int2, A, X,F,Z)
+        val G = Task(split[19], int7, end)
+        val Z = Task(split[16], int6, end)
+        val F = Task(split[13], int5, Z, G)
+        val A = Task(split[10], int4, F, Z)
+        val X = Task(split[7], int3, F, A, Z, G)
+        val Q = Task(split[4], int2, A, X, F, Z)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, G,Z,F,A,X,Q, start)
+        val allTasks = hashSetOf(end, G, Z, F, A, X, Q, start)
 
         calculateCriticalPath(allTasks)
         prettyPrintResult(allTasks)
@@ -164,15 +196,15 @@ fun main() {
         val int8 = split[23].replace("days", "").replace(" ", "").toInt()
         val int9 = split[26].replace("days", "").replace(" ", "").toInt()
         val end = Task(split[25], int9)
-        val H = Task(split[22], int8,end)
-        val G = Task(split[19], int7,end)
-        val Z = Task(split[16], int6,G,H)
-        val F = Task(split[13], int5, Z,G,H)
-        val A = Task(split[10], int4, F,Z,G)
-        val X = Task(split[7], int3, F, A,Z)
-        val Q = Task(split[4], int2, A, X,F)
+        val H = Task(split[22], int8, end)
+        val G = Task(split[19], int7, end)
+        val Z = Task(split[16], int6, G, H)
+        val F = Task(split[13], int5, Z, G, H)
+        val A = Task(split[10], int4, F, Z, G)
+        val X = Task(split[7], int3, F, A, Z)
+        val Q = Task(split[4], int2, A, X, F)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, H,G,Z,F,A,X,Q, start)
+        val allTasks = hashSetOf(end, H, G, Z, F, A, X, Q, start)
 
         calculateCriticalPath(allTasks)
         prettyPrintResult(allTasks)
@@ -191,16 +223,16 @@ fun main() {
         val int9 = split[26].replace("days", "").replace(" ", "").toInt()
         val int10 = split[29].replace("days", "").replace(" ", "").toInt()
         val end = Task(split[28], int10)
-        val D = Task(split[25], int9,end)
-        val H = Task(split[22], int8,end)
-        val G = Task(split[19], int7,D,H)
-        val Z = Task(split[16], int6,G,H,D)
-        val F = Task(split[13], int5, Z,G,H)
-        val A = Task(split[10], int4, F,Z,G)
-        val X = Task(split[7], int3, F, A,Z)
-        val Q = Task(split[4], int2, A, X,F)
+        val D = Task(split[25], int9, end)
+        val H = Task(split[22], int8, end)
+        val G = Task(split[19], int7, D, H)
+        val Z = Task(split[16], int6, G, H, D)
+        val F = Task(split[13], int5, Z, G, H)
+        val A = Task(split[10], int4, F, Z, G)
+        val X = Task(split[7], int3, F, A, Z)
+        val Q = Task(split[4], int2, A, X, F)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, D,H,G,Z,F,A,X,Q, start)
+        val allTasks = hashSetOf(end, D, H, G, Z, F, A, X, Q, start)
 
         calculateCriticalPath(allTasks)
         prettyPrintResult(allTasks)
@@ -240,15 +272,15 @@ fun calculateCriticalPath(tasks: Collection<Task>) {
 
     // get the cost
     val maxCost = tasks.map { it.criticalCost }.maxOrNull() ?: -1
-    println("Critical path length (Days): $maxCost")
-    val fileName = "CriticalPath.txt"
-    val myfile = File(fileName)
-
-    myfile.bufferedWriter().use { out ->
-
-
-        out.write(maxCost)
+   val test = "$maxCost"
+    try {
+        val writer = FileWriter("CriticalPathDays.txt", true)
+        writer.write(test)
+        writer.close()
+   } catch (e: IOException) {
+        e.printStackTrace()
     }
+   // println("Critical path length (Days): $maxCost")
     calculateLatest(tasks, maxCost)
     calculateEarly(tasks)
 }
@@ -265,21 +297,31 @@ fun calculateEarly(tasks: Collection<Task>) = initials(tasks).forEach {
 fun initials(tasks: Collection<Task>): Collection<Task> {
     val dependencies = tasks.flatMap { it.dependencies }.toSet()
     return tasks.filter { it !in dependencies }.also {
-        println("Initial nodes: ${it.joinToString { node -> node.name }}\n")
+      //println("Initial nodes: ${it.joinToString { node -> node.name }}\n")
+        val test = ("${it.joinToString { node -> node.name }}")
+        try {
+            val writer = FileWriter("InitialNodes.txt", true)
+            writer.write(test)
+            writer.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 }
 
 fun prettyPrintResult(tasks: Collection<Task>) {
     val format = "%1$-10s %2$-5s %3$-5s %4$-5s %5$-5s %6$-5s %7$-10s\n"
-    System.out.format(format, "Task", "ES", "EF", "LS", "LF", "Slack", "Critical?")
+    //System.out.format(format, "Task", "ES", "EF", "LS", "LF", "Slack", "Critical?")
     tasks.sortedWith { o1, o2 -> o1.name.compareTo(o2.name) }.forEach {
 
-        System.out.format(
-            format, it.name, it.earlyStart, it.earlyFinish, it.latestStart, it.latestFinish,
-            it.latestStart - it.earlyStart, if (it.isCritical()) "Yes" else "No"
-        )
 
-
+        try {
+            val writer = FileWriter("CriticalPath.txt", true)
+            writer.write("${it.name}/ ${it.earlyStart}/ ${it.earlyFinish}/ ${it.latestStart}/ ${it.latestFinish}/ ${it.latestStart - it.earlyStart}/ ${if (it.isCritical()) "Yes" else "No"}")
+            writer.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
 
     }
 }

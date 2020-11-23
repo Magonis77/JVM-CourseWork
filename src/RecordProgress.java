@@ -12,9 +12,16 @@ public class RecordProgress extends JFrame {
     private JComboBox JcbProjects;
     private JTable TableTasks;
     private JTextField txtTeam;
+    private JTable JTableCriticalPath;
+    private JTextField txtDays;
+    private JTextField txtInitialNodes;
+    private JTextField txt;
     private Progress progress;
     private ProjectsHandler assignteamname;
     private Projects projects;
+    private ProjectsKt projectsKt;
+    private CriticalPathKt CriticalPath;
+    private totaldays totaldays;
 
 
     RecordProgress() {
@@ -82,28 +89,29 @@ public class RecordProgress extends JFrame {
                     String word = JcbProjects.getSelectedItem().toString();
                     File file = new File(filePath2);
                     BufferedReader br = new BufferedReader(new FileReader(file));
-                Scanner input = new Scanner(new File(filePath2));
+                    Scanner input = new Scanner(new File(filePath2));
 
-                // Let's loop through each line of the file
-                while (input.hasNext()) {
-                    String line = input.nextLine();
+                    // Let's loop through each line of the file
+                    while (input.hasNext()) {
+                        String line = input.nextLine();
 
-                    // Now, check if this line contains our keyword. If it does, print the line
-                    if (line.contains(word)) {
-                        String[] splitter = line.split(";");
-                        String write = splitter[2];
-                        String team = splitter[1];
-                        txtTeam.setText(team);
-                        String replace1 = write.replace("[" , " ").replace("]", " ");
-                        String[] replaced = replace1.split(",");
-                        for(int a = 0; a < replaced.length; a++) {
-                            String put = replaced[a];
-                            progress = assignteamname.addprogress(put);
-                            progress.toString();
+                        // Now, check if this line contains our keyword. If it does, print the line
+                        if (line.contains(word)) {
+                            String[] splitter = line.split(";");
+                            String write = splitter[2];
+                            String team = splitter[1];
+                            txtTeam.setText(team);
+                            String replace1 = write.replace("[", " ").replace("]", " ");
+                            String[] replaced = replace1.split(",");
+                            for (int a = 0; a < replaced.length; a++) {
+                                String put = replaced[a];
+                                progress = assignteamname.addprogress(put);
+                                progress.toString();
+                            }
+                            br.close();
                         }
-                        br.close();
                     }
-                }input.close();
+                    input.close();
                 } catch (FileNotFoundException ex) {
 
                 } catch (IOException ioException) {
@@ -119,21 +127,62 @@ public class RecordProgress extends JFrame {
                     // set columns name to the jtable model
                     String firstLine = br.readLine().trim();
                     String[] columnsName = firstLine.split(",");
-                    DefaultTableModel model = (DefaultTableModel)TableTasks.getModel();
+                    DefaultTableModel model = (DefaultTableModel) TableTasks.getModel();
                     model.setColumnIdentifiers(columnsName);
                     model.setRowCount(0);
                     // get lines from txt file
                     Object[] tableLines = br.lines().toArray();
                     // extract data from lines
                     // set data to jtable model
-                    for(int i = 0; i < tableLines.length; i++)
-                    {
+                    for (int i = 0; i < tableLines.length; i++) {
                         String line = tableLines[i].toString().trim();
                         String[] dataRow = line.split("/");
                         model.addRow(dataRow);
                     }
                     br.close();
+                    CriticalPath.main();
+                    File myObj = new File("CriticalPathDays.txt");
+                    Scanner myReader = new Scanner(myObj);
+                    while (myReader.hasNextLine()) {
+                        String data = myReader.nextLine();
+                        txtDays.setText("This Project will take " + data + " days");
+                    }
+                    myReader.close();
+                } catch (Exception ex) {
 
+                }
+                try {
+                    File myObj = new File("InitialNodes.txt");
+                    Scanner myReader = new Scanner(myObj);
+                    while (myReader.hasNextLine()) {
+                        String data = myReader.nextLine();
+                        txtInitialNodes.setText(data);
+                    }
+                    myReader.close();
+                } catch (Exception ex) {
+
+                }
+                try {
+                    File file = new File("CriticalPath.txt");
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    // get the first line
+                    // get the columns name from the first line
+                    // set columns name to the jtable model
+                    String firstLine = br.readLine().trim();
+                    String[] columnsName = firstLine.split(",");
+                    DefaultTableModel model = (DefaultTableModel) JTableCriticalPath.getModel();
+                    model.setColumnIdentifiers(columnsName);
+                    model.setRowCount(0);
+                    // get lines from txt file
+                    Object[] tableLines = br.lines().toArray();
+                    // extract data from lines
+                    // set data to jtable model
+                    for (int i = 0; i < tableLines.length; i++) {
+                        String line = tableLines[i].toString().trim();
+                        String[] dataRow = line.split("/");
+                        model.addRow(dataRow);
+                    }
+                    br.close();
                 } catch (Exception ex) {
 
                 }
@@ -177,6 +226,7 @@ public class RecordProgress extends JFrame {
                     int index = JcbProjects.getSelectedIndex();
                     JcbProjects.removeItemAt(index);
                     JcbProjects.addItem(TeamName);
+                    CriticalPath.main();
                     try {
                         File file = new File(filePath);
                         PrintWriter writer2 = null;
@@ -203,23 +253,6 @@ public class RecordProgress extends JFrame {
         mp.setResizable(false);
         mp.setVisible(true);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

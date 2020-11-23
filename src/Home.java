@@ -51,7 +51,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 RecordProgress mp = new RecordProgress();
                 mp.setVisible(true);
-                mp.setBounds(1500,1500, 1200 ,900);
+                mp.setBounds(1500,1500, 1700 ,900);
                 mp.setLocationRelativeTo(null);
                 mp.setResizable(false);
                 dispose();
@@ -84,7 +84,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 RecordProgress mp = new RecordProgress();
                 mp.setVisible(true);
-                mp.setBounds(1500,1500, 1200 ,900);
+                mp.setBounds(1500,1500, 1700 ,900);
                 mp.setLocationRelativeTo(null);
                 mp.setResizable(false);
                 dispose();

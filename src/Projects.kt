@@ -1,5 +1,10 @@
 import java.io.*
 
+fun read() {
+    val inputStream: InputStream = File("CriticalPathDays.txt").inputStream()
+    val inputString = inputStream.bufferedReader().use { it.readText() }
+    println(inputString)
+}
 
 data class Projects(var name: String, var team: String, var tasks: String) {
 
@@ -8,6 +13,11 @@ data class Tasks(var tasks: String, var days: String) {
 
 }
 data class Progress(var tasks: String){
+
+}
+data class totaldays(var args: Array<String>){
+
+
 
 }
 
@@ -46,4 +56,12 @@ class ProjectsHandler() {
         }
         return Progress(tasks = tasks)
     }
+    fun read(args: Array<String>) {
+        val inputStream: InputStream = File("CriticalPathDays.txt").inputStream()
+        val inputString = inputStream.bufferedReader().use { it.readText() }
+        println(inputString)
+    }
+
 }
+
+

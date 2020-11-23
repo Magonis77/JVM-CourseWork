@@ -1,2 +1,9 @@
 Task Name, Days to complete, progress %
-gui / 6 days / 100%
+Gui / 2 days / 0 %
+Functions / 4 days / 0 %
+Kotlin / 5 days / 0 %
+Scala / 2 days / 0 %
+Implementation of Website / 1 days / 0 %
+Persistance /5 days / 0 %
+Interface  / 6 days / 0 %
+SQL linking / 5 days / 0 %
