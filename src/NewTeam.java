@@ -68,7 +68,6 @@ public class NewTeam extends JFrame {
         createTeamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 if (txtTeamTitle.getText().equals("")){
                     JOptionPane optionPane = new JOptionPane("Please Enter Team Name!", JOptionPane.ERROR_MESSAGE);
                     JDialog dialog = optionPane.createDialog("Error!");

@@ -1,4 +1,2 @@
 Task Name, Days to complete, progress %
-Gui / 11 days /100 %
-Functions / 12 days / 50 %
-Testing / 15 days / 100 %
+gui / 6 days / 100%
