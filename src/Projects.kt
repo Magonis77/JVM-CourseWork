@@ -15,11 +15,6 @@ data class Tasks(var tasks: String, var days: String) {
 data class Progress(var tasks: String){
 
 }
-data class totaldays(var args: Array<String>){
-
-
-
-}
 
 class ProjectsHandler() {
     fun addProject(name: String, team: String, tasks: String): Projects {
