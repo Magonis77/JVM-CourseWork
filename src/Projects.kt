@@ -1,9 +1,21 @@
 import java.io.*
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 fun read() {
     val inputStream: InputStream = File("CriticalPathDays.txt").inputStream()
     val inputString = inputStream.bufferedReader().use { it.readText() }
-    println(inputString)
+
+}
+fun rewrite(){
+    val fileName = "Tasks.txt"
+    val myfile = File(fileName)
+
+    myfile.printWriter().use { out ->
+
+        out.write("Task Name, Days to complete, progress %" + "\n")
+    }
 }
 
 data class Projects(var name: String, var team: String, var tasks: String) {
@@ -18,43 +30,44 @@ data class Progress(var tasks: String){
 
 class ProjectsHandler() {
     fun addProject(name: String, team: String, tasks: String): Projects {
-
-        try {
-            val writer = FileWriter("projects.txt", true)
-            writer.write(name + ";" + team + ";" + tasks + "\n")
-            writer.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val date = Date(System.currentTimeMillis())
+        val dateformate =(formatter.format(date))
+        val fileName = "projects.txt"
+        val myfile = File(fileName)
+        val inputAsString = myfile.bufferedReader().use { it.readText() }
+        myfile.printWriter().use { out ->
+            out.write(inputAsString)
+            out.write(name + ";" + team + ";" + dateformate + ";" + tasks + "\n")
         }
 
         return Projects(name = name, team = team, tasks = tasks)
     }
 
     fun addTasks(tasks: String, days: String): Tasks {
-        try {
-            val writer = FileWriter("Tasks.txt", true)
-            writer.write(tasks + " / " + days + " / " + "0%" + "\n")
-            writer.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
+        val fileName = "Tasks.txt"
+        val myfile = File(fileName)
+        val inputAsString = myfile.bufferedReader().use { it.readText() }
+        myfile.printWriter().use { out ->
+            out.write(inputAsString)
+            out.write(tasks + " / " + days + " / " + "0%" + "\n")
         }
         return Tasks(tasks = tasks, days = days)
     }
 
     fun addprogress(tasks: String): Progress {
-        try {
-            val writer = FileWriter("Tasks.txt", true)
-            writer.write(tasks + "\n")
-            writer.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
+        val fileName = "Tasks.txt"
+        val myfile = File(fileName)
+        val inputAsString = myfile.bufferedReader().use { it.readText() }
+        myfile.printWriter().use { out ->
+            out.write(inputAsString)
+            out.write(tasks + "\n")
         }
         return Progress(tasks = tasks)
     }
     fun read(args: Array<String>) {
         val inputStream: InputStream = File("CriticalPathDays.txt").inputStream()
         val inputString = inputStream.bufferedReader().use { it.readText() }
-        println(inputString)
     }
 
 }

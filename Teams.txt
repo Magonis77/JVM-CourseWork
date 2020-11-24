@@ -1,2 +1,3 @@
-team c [Arny, Mary, Michael, Dom]
-Team B [ Mary,  Arny,  Michael,  BigJohn]
+Team C [Mary, Arny, Michael]
+Team J [Mary, Dom, Bob]
+Team F [Bob, Mary, Arny]

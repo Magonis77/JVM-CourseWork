@@ -1,39 +1,28 @@
 import java.io.*
 
 fun main() {
-    try {
-        val file: File = File("CriticalPath.txt")
-        var writer: PrintWriter? = null
-        writer = PrintWriter(file)
-        writer.print(
-            "Task, Earliest Start , Earliest Finish , Latest Start, Latest Finish, Slack, Critical?"
-        )
-        writer.close()
-    } catch (e: FileNotFoundException) {
-        e.printStackTrace()
+    val fileName1 = "CriticalPath.txt"
+    val myfile1 = File(fileName1)
+
+    myfile1.printWriter().use { out ->
+
+        out.write("Task, Earliest Start , Earliest Finish , Latest Start, Latest Finish, Slack, Critical?")
     }
-    try {
-        val file: File = File("InitialNodes.txt")
-        var writer: PrintWriter? = null
-        writer = PrintWriter(file)
-        writer.print(
-            ""
-        )
-        writer.close()
-    } catch (e: FileNotFoundException) {
-        e.printStackTrace()
+    val fileName2 = "InitialNodes.txt"
+    val myfile2 = File(fileName2)
+
+    myfile2.printWriter().use { out ->
+
+        out.write("")
     }
-    try {
-        val file: File = File("CriticalPathDays.txt")
-        var writer: PrintWriter? = null
-        writer = PrintWriter(file)
-        writer.print(
-            ""
-        )
-        writer.close()
-    } catch (e: FileNotFoundException) {
-        e.printStackTrace()
+    val fileName3 = "CriticalPathDays.txt"
+    val myfile3 = File(fileName3)
+
+    myfile3.printWriter().use { out ->
+
+        out.write("")
     }
+
     val bufferedReader: BufferedReader = File("Tasks.txt").bufferedReader()
     val inputString = bufferedReader.use { it.readText() }
     val fileName :String = "Tasks.txt"
@@ -42,7 +31,6 @@ fun main() {
     File(fileName).readLines().forEach {
         i++
     }
-    //println(i)
     if(i == 1){
         val befsplit = inputString.replace("%", "/")
         val split: List<String> = befsplit.split("/")
@@ -273,14 +261,12 @@ fun calculateCriticalPath(tasks: Collection<Task>) {
     // get the cost
     val maxCost = tasks.map { it.criticalCost }.maxOrNull() ?: -1
    val test = "$maxCost"
-    try {
-        val writer = FileWriter("CriticalPathDays.txt", true)
-        writer.write(test)
-        writer.close()
-   } catch (e: IOException) {
-        e.printStackTrace()
+    val fileName = "CriticalPathDays.txt"
+    val myfile = File(fileName)
+    myfile.printWriter().use { out ->
+        out.write(test)
+
     }
-   // println("Critical path length (Days): $maxCost")
     calculateLatest(tasks, maxCost)
     calculateEarly(tasks)
 }
@@ -297,24 +283,21 @@ fun calculateEarly(tasks: Collection<Task>) = initials(tasks).forEach {
 fun initials(tasks: Collection<Task>): Collection<Task> {
     val dependencies = tasks.flatMap { it.dependencies }.toSet()
     return tasks.filter { it !in dependencies }.also {
-      //println("Initial nodes: ${it.joinToString { node -> node.name }}\n")
         val test = ("${it.joinToString { node -> node.name }}")
-        try {
-            val writer = FileWriter("InitialNodes.txt", true)
-            writer.write(test)
-            writer.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
+        val fileName = "InitialNodes.txt"
+        val myfile = File(fileName)
+        val inputAsString = myfile.bufferedReader().use { it.readText() }
+        myfile.printWriter().use { out ->
+            out.write(inputAsString)
+            out.write(test)
+
         }
     }
 }
 
 fun prettyPrintResult(tasks: Collection<Task>) {
     val format = "%1$-10s %2$-5s %3$-5s %4$-5s %5$-5s %6$-5s %7$-10s\n"
-    //System.out.format(format, "Task", "ES", "EF", "LS", "LF", "Slack", "Critical?")
     tasks.sortedWith { o1, o2 -> o1.name.compareTo(o2.name) }.forEach {
-
-
         try {
             val writer = FileWriter("CriticalPath.txt", true)
             writer.write("${it.name}/ ${it.earlyStart}/ ${it.earlyFinish}/ ${it.latestStart}/ ${it.latestFinish}/ ${it.latestStart - it.earlyStart}/ ${if (it.isCritical()) "Yes" else "No"}")

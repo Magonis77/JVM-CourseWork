@@ -1,9 +1,4 @@
 Task, Earliest Start , Earliest Finish , Latest Start, Latest Finish, Slack, Critical?
-Functions / 2/ 6/ 2/ 6/ 0/ Yes
-Gui / 0/ 2/ 0/ 2/ 0/ Yes
-Implementation of Website / 13/ 14/ 13/ 14/ 0/ Yes
-Interface  / 14/ 20/ 14/ 20/ 0/ Yes
-Kotlin / 6/ 11/ 6/ 11/ 0/ Yes
-Persistance / 14/ 19/ 15/ 20/ 1/ No
-SQL linking / 20/ 25/ 20/ 25/ 0/ Yes
-Scala / 11/ 13/ 11/ 13/ 0/ Yes
+ gui / 0/ 4/ 0/ 4/ 0/ Yes
+ kotlin / 4/ 8/ 4/ 8/ 0/ Yes
+ testing / 8/ 14/ 8/ 14/ 0/ Yes

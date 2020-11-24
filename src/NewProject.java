@@ -45,16 +45,7 @@ public class NewProject extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        try {
-            File file = new File(filePath);
-            PrintWriter writer = null;
-            writer = new PrintWriter(file);
-            writer.print("Task Name, Days to complete, progress %" + "\n");
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        ProjectsKt.rewrite();
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -94,19 +85,13 @@ public class NewProject extends JFrame {
 
                 try {
                     BufferedReader br = new BufferedReader(new FileReader(file));
-                    // get the first line
-                    // get the columns name from the first line
-                    // set columns name to the jtable model
                     String firstLine = br.readLine().trim();
                     String[] columnsName = firstLine.split(",");
-                   DefaultTableModel model = (DefaultTableModel)TableTasks.getModel();
+                    DefaultTableModel model = (DefaultTableModel)TableTasks.getModel();
                     model.setColumnIdentifiers(columnsName);
-                   model.setRowCount(0);
-
-                    // get lines from txt file
+                    model.setRowCount(0);
                     Object[] tableLines = br.lines().toArray();
-                    // extract data from lines
-                    // set data to jtable model
+
                     for(int i = 0; i < tableLines.length; i++)
                     {
                         String line = tableLines[i].toString().trim();
@@ -132,7 +117,6 @@ public class NewProject extends JFrame {
 
                 }
                 String edit = sbTableData.toString();
-                System.out.println(edit);
                 if (projTitle.getText().equals("")) {
                     JOptionPane optionPane = new JOptionPane("Please Enter Team Name!", JOptionPane.ERROR_MESSAGE);
                     JDialog dialog = optionPane.createDialog("Error!");
@@ -150,31 +134,17 @@ public class NewProject extends JFrame {
                     projects.toString();
                     projTitle.setText("");
                     assignTask.setText("");
-                    try {
-                        File file = new File(filePath);
-                        PrintWriter writer = null;
-                        writer = new PrintWriter(file);
-                        writer.print("Task Name, Days to complete, progress %" + "\n");
-                        writer.close();
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
-                    }
+                    ProjectsKt.rewrite();
                     File file = new File(filePath);
                     try {
                         BufferedReader br = new BufferedReader(new FileReader(file));
-                        // get the first line
-                        // get the columns name from the first line
-                        // set columns name to the jtable model
                         String firstLine = br.readLine().trim();
                         String[] columnsName = firstLine.split(",");
                         DefaultTableModel model = (DefaultTableModel) TableTasks.getModel();
                         model.setColumnIdentifiers(columnsName);
                         model.setRowCount(0);
-
-                        // get lines from txt file
                         Object[] tableLines = br.lines().toArray();
-                        // extract data from lines
-                        // set data to jtable model
+
                         for (int i = 0; i < tableLines.length; i++) {
                             String line = tableLines[i].toString().trim();
                             String[] dataRow = line.split("/");

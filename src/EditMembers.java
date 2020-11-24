@@ -70,7 +70,6 @@ public class EditMembers extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = TeamMembers.getSelectedIndex();
                 String selected = TeamMembers.getSelectedValue().toString();
-                System.out.println(selectedIndex);
                 if (selectedIndex != -1) {
                     liss.remove(selectedIndex);
                 }

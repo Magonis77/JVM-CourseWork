@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Scanner;
 
+
 public class RecordProgress extends JFrame {
     private JButton confirmButton;
     private JPanel MainPnl;
@@ -15,13 +16,13 @@ public class RecordProgress extends JFrame {
     private JTable JTableCriticalPath;
     private JTextField txtDays;
     private JTextField txtInitialNodes;
+    private JTextField txtFinDate;
     private JTextField txt;
     private Progress progress;
     private ProjectsHandler assignteamname;
     private Projects projects;
     private ProjectsKt projectsKt;
     private CriticalPathKt CriticalPath;
-    private totaldays totaldays;
 
 
     RecordProgress() {
@@ -52,15 +53,7 @@ public class RecordProgress extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            File file = new File(filePath);
-            PrintWriter writer = null;
-            writer = new PrintWriter(file);
-            writer.print("Task Name, Days to complete, progress %" + "\n");
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        ProjectsKt.rewrite();
 
         returnButton.addActionListener(new ActionListener() {
             @Override
@@ -76,15 +69,7 @@ public class RecordProgress extends JFrame {
         JcbProjects.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    File file = new File(filePath);
-                    PrintWriter writer = null;
-                    writer = new PrintWriter(file);
-                    writer.print("Task Name, Days to complete, progress %" + "\n");
-                    writer.close();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                ProjectsKt.rewrite();
                 try {
                     String word = JcbProjects.getSelectedItem().toString();
                     File file = new File(filePath2);
@@ -98,7 +83,7 @@ public class RecordProgress extends JFrame {
                         // Now, check if this line contains our keyword. If it does, print the line
                         if (line.contains(word)) {
                             String[] splitter = line.split(";");
-                            String write = splitter[2];
+                            String write = splitter[3];
                             String team = splitter[1];
                             txtTeam.setText(team);
                             String replace1 = write.replace("[", " ").replace("]", " ");
@@ -122,18 +107,12 @@ public class RecordProgress extends JFrame {
                 try {
                     File file = new File("Tasks.txt");
                     BufferedReader br = new BufferedReader(new FileReader(file));
-                    // get the first line
-                    // get the columns name from the first line
-                    // set columns name to the jtable model
                     String firstLine = br.readLine().trim();
                     String[] columnsName = firstLine.split(",");
                     DefaultTableModel model = (DefaultTableModel) TableTasks.getModel();
                     model.setColumnIdentifiers(columnsName);
                     model.setRowCount(0);
-                    // get lines from txt file
                     Object[] tableLines = br.lines().toArray();
-                    // extract data from lines
-                    // set data to jtable model
                     for (int i = 0; i < tableLines.length; i++) {
                         String line = tableLines[i].toString().trim();
                         String[] dataRow = line.split("/");
@@ -141,11 +120,14 @@ public class RecordProgress extends JFrame {
                     }
                     br.close();
                     CriticalPath.main();
+
                     File myObj = new File("CriticalPathDays.txt");
                     Scanner myReader = new Scanner(myObj);
                     while (myReader.hasNextLine()) {
                         String data = myReader.nextLine();
                         txtDays.setText("This Project will take " + data + " days");
+
+
                     }
                     myReader.close();
                 } catch (Exception ex) {
@@ -165,18 +147,12 @@ public class RecordProgress extends JFrame {
                 try {
                     File file = new File("CriticalPath.txt");
                     BufferedReader br = new BufferedReader(new FileReader(file));
-                    // get the first line
-                    // get the columns name from the first line
-                    // set columns name to the jtable model
                     String firstLine = br.readLine().trim();
                     String[] columnsName = firstLine.split(",");
                     DefaultTableModel model = (DefaultTableModel) JTableCriticalPath.getModel();
                     model.setColumnIdentifiers(columnsName);
                     model.setRowCount(0);
-                    // get lines from txt file
                     Object[] tableLines = br.lines().toArray();
-                    // extract data from lines
-                    // set data to jtable model
                     for (int i = 0; i < tableLines.length; i++) {
                         String line = tableLines[i].toString().trim();
                         String[] dataRow = line.split("/");
@@ -227,15 +203,7 @@ public class RecordProgress extends JFrame {
                     JcbProjects.removeItemAt(index);
                     JcbProjects.addItem(TeamName);
                     CriticalPath.main();
-                    try {
-                        File file = new File(filePath);
-                        PrintWriter writer2 = null;
-                        writer2 = new PrintWriter(file);
-                        writer2.print("Task Name, Days to complete, progress %" + "\n");
-                        writer2.close();
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
-                    }
+                    ProjectsKt.rewrite();
 
                 } catch (FileNotFoundException fileNotFoundException) {
                     fileNotFoundException.printStackTrace();
