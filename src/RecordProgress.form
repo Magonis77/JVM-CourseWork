@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="RecordProgress">
   <grid id="27dc6" binding="MainPnl" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+    <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="19" width="600" height="563"/>
+      <xy x="20" y="19" width="1087" height="699"/>
     </constraints>
     <properties>
-      <background color="-16777216"/>
+      <background color="-16774614"/>
     </properties>
     <border type="none"/>
     <children>
       <grid id="d65c0" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+        <margin top="10" left="10" bottom="10" right="10"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-16316665"/>
+          <background color="-16775391"/>
         </properties>
         <border type="none"/>
         <children>
@@ -52,21 +52,21 @@
           </hspacer>
         </children>
       </grid>
-      <grid id="ae35f" layout-manager="GridLayoutManager" row-count="11" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="ae35f" layout-manager="GridLayoutManager" row-count="18" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="10" bottom="0" right="10"/>
         <constraints>
           <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="480"/>
           </grid>
         </constraints>
         <properties>
-          <background color="-16316665"/>
+          <background color="-16775391"/>
         </properties>
-        <border type="none"/>
+        <border type="none" title=""/>
         <children>
           <component id="de460" class="javax.swing.JButton" binding="confirmButton" default-binding="true">
             <constraints>
-              <grid row="10" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+              <grid row="16" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="50" height="50"/>
               </grid>
             </constraints>
@@ -78,13 +78,14 @@
           </component>
           <component id="f720" class="javax.swing.JTextField" binding="txtDays">
             <constraints>
-              <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+              <grid row="8" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
-              <caretColor color="-16777216"/>
-              <disabledTextColor color="-16777216"/>
+              <background color="-15395558"/>
+              <caretColor color="-1"/>
+              <disabledTextColor color="-1"/>
               <editable value="false"/>
               <enabled value="false"/>
               <foreground color="-1"/>
@@ -94,34 +95,25 @@
           </component>
           <component id="8415e" class="javax.swing.JComboBox" binding="JcbProjects">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="9" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="2" anchor="9" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-14473945"/>
+              <background color="-15395558"/>
               <foreground color="-1"/>
             </properties>
           </component>
-          <component id="853a1" class="javax.swing.JLabel">
+          <component id="b962" class="javax.swing.JLabel" binding="lblTeam">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-1"/>
-              <text value="Critical path length (Days):"/>
-            </properties>
-          </component>
-          <component id="b962" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <foreground color="-1"/>
               <text value="Team:"/>
             </properties>
           </component>
-          <component id="9d4d2" class="javax.swing.JLabel">
+          <component id="9d4d2" class="javax.swing.JLabel" binding="lblSelectProj">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <foreground color="-1"/>
@@ -130,21 +122,22 @@
           </component>
           <component id="e7a5c" class="javax.swing.JTextField" binding="txtTeam">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+              <grid row="5" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
-              <caretColor color="-16777216"/>
-              <disabledTextColor color="-16777216"/>
+              <background color="-15395558"/>
+              <caretColor color="-1"/>
+              <disabledTextColor color="-1"/>
               <editable value="false"/>
               <enabled value="false"/>
               <foreground color="-1"/>
             </properties>
           </component>
-          <component id="b2fc6" class="javax.swing.JLabel">
+          <component id="b2fc6" class="javax.swing.JLabel" binding="lblInitialNodes">
             <constraints>
-              <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="10" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <foreground color="-1"/>
@@ -153,11 +146,12 @@
           </component>
           <component id="9f73d" class="javax.swing.JTextField" binding="txtInitialNodes">
             <constraints>
-              <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="11" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
+              <background color="-15395558"/>
               <caretColor color="-16777216"/>
               <disabledTextColor color="-16777216"/>
               <editable value="false"/>
@@ -167,21 +161,23 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="706a5" class="javax.swing.JLabel">
+          <component id="706a5" class="javax.swing.JLabel" binding="lblFinishDate">
             <constraints>
-              <grid row="8" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-1"/>
               <text value="Finish Date:"/>
             </properties>
           </component>
           <component id="6bd68" class="javax.swing.JTextField" binding="txtFinDate">
             <constraints>
-              <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="14" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties>
+              <background color="-15395558"/>
               <caretColor color="-16777216"/>
               <disabledTextColor color="-16777216"/>
               <editable value="false"/>
@@ -190,14 +186,85 @@
               <selectedTextColor color="-16777216"/>
             </properties>
           </component>
+          <component id="853a1" class="javax.swing.JLabel" binding="lblCriticalPath">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-1"/>
+              <text value="Critical path length (Days):"/>
+            </properties>
+          </component>
+          <vspacer id="900dc">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="a0863">
+            <constraints>
+              <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="26b99">
+            <constraints>
+              <grid row="12" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="53f7f">
+            <constraints>
+              <grid row="15" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="1fff2">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="806a6">
+            <constraints>
+              <grid row="17" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <vspacer id="fd7f4">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="ab9b2" class="javax.swing.JCheckBox" binding="kotlinCheckBox" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="30" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16775391"/>
+              <foreground color="-1"/>
+              <text value="Kotlin"/>
+            </properties>
+          </component>
+          <component id="b2633" class="javax.swing.JCheckBox" binding="scalaCheckBox" default-binding="true">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="30" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16775391"/>
+              <foreground color="-1"/>
+              <text value="Scala"/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <scrollpane id="cbf9b">
+      <scrollpane id="cbf9b" binding="criticalTable">
         <constraints>
           <grid row="1" column="2" row-span="2" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
-        <border type="none"/>
+        <properties>
+          <background color="-1311745"/>
+          <foreground color="-16777216"/>
+        </properties>
+        <border type="none" title=""/>
         <children>
           <component id="7a6df" class="javax.swing.JTable" binding="JTableCriticalPath">
             <constraints/>
@@ -207,11 +274,14 @@
           </component>
         </children>
       </scrollpane>
-      <scrollpane id="a5d4c">
+      <scrollpane id="a5d4c" binding="tasksTable">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-1312257"/>
+          <foreground color="-16777216"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="707cd" class="javax.swing.JTable" binding="TableTasks">

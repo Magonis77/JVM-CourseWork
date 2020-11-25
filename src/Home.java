@@ -13,7 +13,6 @@ public class Home extends JFrame {
     private JButton manageTeamsBigButton;
     private JPanel MainPnl;
     private JPanel TopPnl;
-    private JPanel SidePnl;
     private JPanel MidPnl;
     private JButton exitButton;
 
@@ -28,7 +27,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewProject project = new NewProject();
                 project.setVisible(true);
-                project.setBounds(1500,1500, 1200 ,900);
+                project.setBounds(1500,1500, 900 ,700);
                 project.setLocationRelativeTo(null);
                 project.setResizable(false);
                 dispose();
@@ -39,7 +38,7 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewTeam nt = new NewTeam();
                 nt.setVisible(true);
-                nt.setBounds(1500,1500, 1200 ,900);
+                nt.setBounds(1500,1500, 800 ,700);
                 nt.setLocationRelativeTo(null);
                 nt.setResizable(false);
                 dispose();
@@ -62,56 +61,14 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ManageTeams mt = new ManageTeams();
                 mt.setVisible(true);
-                mt.setBounds(1500,1500, 1200 ,900);
+                mt.setBounds(1500,1500, 800 ,700);
                 mt.setLocationRelativeTo(null);
                 mt.setResizable(false);
                 dispose();
             }
         });
-        newProjectSideButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NewProject project = new NewProject();
-                project.setVisible(true);
-                project.setBounds(1500,1500, 1200 ,900);
-                project.setLocationRelativeTo(null);
-                project.setResizable(false);
-                dispose();
-            }
-        });
-        manageProjectSideButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                RecordProgress mp = new RecordProgress();
-                mp.setVisible(true);
-                mp.setBounds(1500,1500, 1700 ,900);
-                mp.setLocationRelativeTo(null);
-                mp.setResizable(false);
-                dispose();
-            }
-        });
-        newTeamSideButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NewTeam mt = new NewTeam();
-                mt.setVisible(true);
-                mt.setBounds(1500,1500, 1200 ,900);
-                mt.setLocationRelativeTo(null);
-                mt.setResizable(false);
-                dispose();
-            }
-        });
-        manageTeamsSideButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ManageTeams mt = new ManageTeams();
-                mt.setVisible(true);
-                mt.setBounds(1500,1500, 1200 ,900);
-                mt.setLocationRelativeTo(null);
-                mt.setResizable(false);
-                dispose();
-            }
-        });
+
+
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -122,7 +79,7 @@ public class Home extends JFrame {
 
     public static void main(String[] args) {
         Home home = new Home();
-        home.setBounds(1500, 1500, 1200, 900);
+        home.setBounds(1500, 1500, 1000, 800);
         home.setLocationRelativeTo(null);
         home.setResizable(false);
         home.setVisible(true);

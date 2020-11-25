@@ -1,4 +1,8 @@
 Task Name, Days to complete, progress %
- gui / 4 days / 0 %
- kotlin / 4 days / 0 %
- testing / 6 days / 0 % 
+Gui / 5 days / 0 %
+Functions / 2 days / 0 %
+Kotlin / 13 days / 0 %
+lambda / 5 days / 0 %
+Scala / 3 days / 0 %
+Testing / 4 days / 0 %
+Integration / 3 days / 0 %

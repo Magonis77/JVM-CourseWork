@@ -17,6 +17,15 @@ public class RecordProgress extends JFrame {
     private JTextField txtDays;
     private JTextField txtInitialNodes;
     private JTextField txtFinDate;
+    private JCheckBox kotlinCheckBox;
+    private JCheckBox scalaCheckBox;
+    private JLabel lblSelectProj;
+    private JLabel lblTeam;
+    private JLabel lblCriticalPath;
+    private JLabel lblInitialNodes;
+    private JLabel lblFinishDate;
+    private JScrollPane tasksTable;
+    private JScrollPane criticalTable;
     private JTextField txt;
     private Progress progress;
     private ProjectsHandler assignteamname;
@@ -26,10 +35,10 @@ public class RecordProgress extends JFrame {
 
 
     RecordProgress() {
-         super("Manage Projects");
-         this.setContentPane(this.MainPnl);
-         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-         this.pack();
+        super("Manage Projects");
+        this.setContentPane(this.MainPnl);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.pack();
         assignteamname = new ProjectsHandler();
         String filePath = "Tasks.txt";
         String filePath2 = "projects.txt";
@@ -41,7 +50,7 @@ public class RecordProgress extends JFrame {
             BufferedReader br = new BufferedReader(new FileReader(file));
             Object[] lines = br.lines().toArray();
 
-            for(int i = 0; i < lines.length; i++){
+            for (int i = 0; i < lines.length; i++) {
                 String line = lines[i].toString();
                 String[] splitter = line.split(";");
                 String write = splitter[0];
@@ -59,7 +68,7 @@ public class RecordProgress extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Home home = new Home();
-                home.setBounds(1500,1500, 1200 ,900);
+                home.setBounds(1500, 1500, 1000, 800);
                 home.setLocationRelativeTo(null);
                 home.setResizable(false);
                 home.setVisible(true);
@@ -164,13 +173,108 @@ public class RecordProgress extends JFrame {
                 }
             }
         });
+
+        confirmButton.setEnabled(false);
+        kotlinCheckBox.setSelected(false);
+        confirmButton.setEnabled(false);
+        lblSelectProj.setEnabled(false);
+        JcbProjects.setEnabled(false);
+        lblTeam.setEnabled(false);
+        txtTeam.setEnabled(false);
+        lblCriticalPath.setEnabled(false);
+        txtDays.setEnabled(false);
+        lblInitialNodes.setEnabled(false);
+        txtInitialNodes.setEnabled(false);
+        lblFinishDate.setEnabled(false);
+        txtFinDate.setEnabled(false);
+        tasksTable.setEnabled(false);
+
+        kotlinCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (kotlinCheckBox.isSelected()) {
+                    scalaCheckBox.setSelected(false);
+                    scalaCheckBox.setEnabled(false);
+                    confirmButton.setEnabled(true);
+                    lblSelectProj.setEnabled(true);
+                    JcbProjects.setEnabled(true);
+                    lblTeam.setEnabled(true);
+                    txtTeam.setEnabled(true);
+                    lblCriticalPath.setEnabled(true);
+                    txtDays.setEnabled(true);
+                    lblInitialNodes.setEnabled(true);
+                    txtInitialNodes.setEnabled(true);
+                    lblFinishDate.setEnabled(true);
+                    txtFinDate.setEnabled(true);
+                    tasksTable.setEnabled(true);
+
+                } else {
+                    if (!kotlinCheckBox.isSelected()) {
+                        scalaCheckBox.setEnabled(true);
+                        confirmButton.setEnabled(false);
+                        lblSelectProj.setEnabled(false);
+                        JcbProjects.setEnabled(false);
+                        lblTeam.setEnabled(false);
+                        txtTeam.setEnabled(false);
+                        lblCriticalPath.setEnabled(false);
+                        txtDays.setEnabled(false);
+                        lblInitialNodes.setEnabled(false);
+                        txtInitialNodes.setEnabled(false);
+                        lblFinishDate.setEnabled(false);
+                        txtFinDate.setEnabled(false);
+                        tasksTable.setEnabled(false);
+
+                    }
+                }
+            }
+        });
+        scalaCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (scalaCheckBox.isSelected()) {
+                    kotlinCheckBox.setSelected(false);
+                    kotlinCheckBox.setEnabled(false);
+                    confirmButton.setEnabled(true);
+                    lblSelectProj.setEnabled(true);
+                    JcbProjects.setEnabled(true);
+                    lblTeam.setEnabled(true);
+                    txtTeam.setEnabled(true);
+                    lblCriticalPath.setEnabled(true);
+                    txtDays.setEnabled(true);
+                    lblInitialNodes.setEnabled(true);
+                    txtInitialNodes.setEnabled(true);
+                    lblFinishDate.setEnabled(true);
+                    txtFinDate.setEnabled(true);
+                    tasksTable.setEnabled(true);
+
+                } else {
+                    if (!scalaCheckBox.isSelected()) {
+                        kotlinCheckBox.setEnabled(true);
+                        confirmButton.setEnabled(false);
+                        lblSelectProj.setEnabled(false);
+                        JcbProjects.setEnabled(false);
+                        lblTeam.setEnabled(false);
+                        txtTeam.setEnabled(false);
+                        lblCriticalPath.setEnabled(false);
+                        txtDays.setEnabled(false);
+                        lblInitialNodes.setEnabled(false);
+                        txtInitialNodes.setEnabled(false);
+                        lblFinishDate.setEnabled(false);
+                        txtFinDate.setEnabled(false);
+                        tasksTable.setEnabled(false);
+                    }
+                }
+            }
+        });
+
+
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 StringBuffer sbTableData = new StringBuffer();
-                for(int row = 0; row < TableTasks.getRowCount(); row ++){
-                    for(int column = 0; column < TableTasks.getColumnCount(); column ++){
+                for (int row = 0; row < TableTasks.getRowCount(); row++) {
+                    for (int column = 0; column < TableTasks.getColumnCount(); column++) {
                         sbTableData.append(TableTasks.getValueAt(row, column)).append("/");
                     }
 
@@ -211,17 +315,17 @@ public class RecordProgress extends JFrame {
                     ioException.printStackTrace();
                 }
 
-            } });
+            }
+        });
     }
 
     public static void main(String[] args) {
         RecordProgress mp = new RecordProgress();
-        mp.setBounds(1500,1500, 1200 ,900);
+        mp.setBounds(1500, 1500, 1200, 900);
         mp.setLocationRelativeTo(null);
         mp.setResizable(false);
         mp.setVisible(true);
     }
-
 
 
 }

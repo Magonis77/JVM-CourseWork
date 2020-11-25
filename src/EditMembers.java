@@ -28,9 +28,9 @@ public class EditMembers extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 members = createmembers.createMember(txtMemberName.getText());
                 members.toString();
-                        String line = txtMemberName.getText();
-                        liss.addElement(line);
-                        TeamMembers.setModel(liss);
+                String line = txtMemberName.getText();
+                liss.addElement(line);
+                TeamMembers.setModel(liss);
                 txtMemberName.setText("");
 
             }
@@ -59,7 +59,7 @@ public class EditMembers extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewTeam nt = new NewTeam();
                 nt.setVisible(true);
-                nt.setBounds(500,500, 600 ,600);
+                nt.setBounds(1500,1500, 800 ,700);
                 nt.setLocationRelativeTo(null);
                 nt.setResizable(false);
                 dispose();
@@ -102,7 +102,7 @@ public class EditMembers extends JFrame {
             }});
 
 
-}
+    }
 
     public void main(String[] args) {
         EditMembers memberc = new EditMembers();

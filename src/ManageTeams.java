@@ -15,6 +15,12 @@ public class ManageTeams extends JFrame {
     private JButton removeButton;
     private JButton deleteTeamButton;
     private JTextField txtTeamTitle;
+    private JPanel SettingsPnl;
+    private JPanel TitlePnl;
+    private JCheckBox confirmSettingsCheckBox;
+    private JLabel lblSelectTeam;
+    private JLabel lblAddMembers;
+    private JLabel lblTeamName;
     private Teams teams;
     private CreateHandler createteam;
     private members manager;
@@ -61,7 +67,7 @@ public class ManageTeams extends JFrame {
                 String line = lines[i].toString();
                 Comboboxmembers.addItem(line);
             }
-    br.close();
+            br.close();
         } catch (FileNotFoundException ex) {
 
         } catch (IOException e) {
@@ -72,7 +78,7 @@ public class ManageTeams extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Home home = new Home();
-                home.setBounds(1500, 1500, 1200, 900);
+                home.setBounds(1500, 1500, 1000, 800);
                 home.setLocationRelativeTo(null);
                 home.setResizable(false);
                 home.setVisible(true);
@@ -100,8 +106,19 @@ public class ManageTeams extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String member = liss.toString().replaceFirst("," , "").replaceFirst(" ", "");
-                teams = createteam.createTeam(txtTeamTitle.getText(),member );
+                editButton.setEnabled(false);
+                lblSelectTeam.setEnabled(true);
+                cbteams.setEnabled(true);
+                txtTeamTitle.setEnabled(true);
+                lblAddMembers.setEnabled(true);
+                Comboboxmembers.setEnabled(true);
+                addButton.setEnabled(true);
+                removeButton.setEnabled(true);
+                deleteTeamButton.setEnabled(true);
+                confirmSettingsCheckBox.setSelected(false);
+
+                String member = liss.toString().replaceFirst(",", "").replaceFirst(" ", "");
+                teams = createteam.createTeam(txtTeamTitle.getText(), member);
                 teams.toString();
                 String abc = txtTeamTitle.getText() + member;
                 cbteams.addItem(abc);
@@ -135,7 +152,8 @@ public class ManageTeams extends JFrame {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
 
-            }}
+                }
+            }
 
         });
 
@@ -160,7 +178,7 @@ public class ManageTeams extends JFrame {
                     }
                     int index = cbteams.getSelectedIndex();
                     cbteams.removeItemAt(index);
-                    teams = createteam.createTeam(txtTeamTitle.getText(),liss.toString());
+                    teams = createteam.createTeam(txtTeamTitle.getText(), liss.toString());
                     teams.toString();
                     liss.removeAllElements();
                     TeamMembers.setModel(liss);
@@ -183,10 +201,10 @@ public class ManageTeams extends JFrame {
                     TeamMembers.setModel(liss);
                     ArrayList<String> al = new ArrayList<String>();
                     manager = managing.sendlist(cbteams.getSelectedItem().toString());
-                    String test = manager.toString().replace("members(members=[" , "").replace("])" , "");
+                    String test = manager.toString().replace("members(members=[", "").replace("])", "");
                     String[] members = test.split(",");
                     gettingTN = managing.getteamname(cbteams.getSelectedItem().toString());
-                    txtTeamTitle.setText(gettingTN.toString().replace("teamname(teamname=" , "").replace(")", ""));
+                    txtTeamTitle.setText(gettingTN.toString().replace("teamname(teamname=", "").replace(")", ""));
                     for (String str : members) {
                         liss.addElement(str);
                         TeamMembers.setModel(liss);
@@ -196,13 +214,77 @@ public class ManageTeams extends JFrame {
                 }
             }
         });
+
+        editButton.setEnabled(false);
+
+
+        confirmSettingsCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (txtTeamTitle.getText().equals("") && (liss.isEmpty())) {
+                    JOptionPane optionPane = new JOptionPane("Please Add Team Members AND Enter Team Name!", JOptionPane.ERROR_MESSAGE);
+                    JDialog dialog = optionPane.createDialog("Error!");
+                    dialog.setAlwaysOnTop(true);
+                    dialog.setVisible(true);
+                    confirmSettingsCheckBox.setSelected(false);
+                } else {
+                    if (txtTeamTitle.getText().equals("")) {
+                        JOptionPane optionPane = new JOptionPane("Please Enter Team Name!", JOptionPane.ERROR_MESSAGE);
+                        JDialog dialog = optionPane.createDialog("Error!");
+                        dialog.setAlwaysOnTop(true);
+                        dialog.setVisible(true);
+                        confirmSettingsCheckBox.setSelected(false);
+                    } else {
+                        if (liss.isEmpty()) {
+                            JOptionPane optionPane = new JOptionPane("Please Add Team Members!", JOptionPane.ERROR_MESSAGE);
+                            JDialog dialog = optionPane.createDialog("Error!");
+                            dialog.setAlwaysOnTop(true);
+                            dialog.setVisible(true);
+                            confirmSettingsCheckBox.setSelected(false);
+                        } else {
+                            if (confirmSettingsCheckBox.isSelected()) {
+                                editButton.setEnabled(true);
+                                lblSelectTeam.setEnabled(false);
+                                cbteams.setEnabled(false);
+                                lblTeamName.setEnabled(false);
+                                txtTeamTitle.setEnabled(false);
+                                lblAddMembers.setEnabled(false);
+                                Comboboxmembers.setEnabled(false);
+                                addButton.setEnabled(false);
+                                removeButton.setEnabled(false);
+                                deleteTeamButton.setEnabled(false);
+                                TeamMembers.setEnabled(false);
+                            } else {
+                                editButton.setEnabled(false);
+                                lblSelectTeam.setEnabled(true);
+                                cbteams.setEnabled(true);
+                                lblTeamName.setEnabled(true);
+                                txtTeamTitle.setEnabled(true);
+                                lblAddMembers.setEnabled(true);
+                                Comboboxmembers.setEnabled(true);
+                                addButton.setEnabled(true);
+                                removeButton.setEnabled(true);
+                                deleteTeamButton.setEnabled(true);
+                                TeamMembers.setEnabled(true);
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
+
     public static void main(String[] args) {
         ManageTeams mt = new ManageTeams();
-        mt.setBounds(1500,1500, 1200 ,900);
+        mt.setBounds(1500, 1500, 1200, 900);
         mt.setLocationRelativeTo(null);
         mt.setResizable(false);
         mt.setVisible(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
 
