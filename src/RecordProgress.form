@@ -178,12 +178,12 @@
             </constraints>
             <properties>
               <background color="-15395558"/>
-              <caretColor color="-16777216"/>
-              <disabledTextColor color="-16777216"/>
+              <caretColor color="-1"/>
+              <disabledTextColor color="-1"/>
               <editable value="false"/>
               <enabled value="false"/>
-              <foreground color="-16777216"/>
-              <selectedTextColor color="-16777216"/>
+              <foreground color="-1"/>
+              <selectedTextColor color="-1"/>
             </properties>
           </component>
           <component id="853a1" class="javax.swing.JLabel" binding="lblCriticalPath">

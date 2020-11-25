@@ -3,6 +3,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -78,100 +81,236 @@ public class RecordProgress extends JFrame {
         JcbProjects.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProjectsKt.rewrite();
-                try {
-                    String word = JcbProjects.getSelectedItem().toString();
-                    File file = new File(filePath2);
-                    BufferedReader br = new BufferedReader(new FileReader(file));
-                    Scanner input = new Scanner(new File(filePath2));
+                if (kotlinCheckBox.isSelected()){
+                    ProjectsKt.rewrite();
+                    try {
+                        String word = JcbProjects.getSelectedItem().toString();
+                        File file = new File(filePath2);
+                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        Scanner input = new Scanner(new File(filePath2));
+                        Integer Dayadd = 1;
 
-                    // Let's loop through each line of the file
-                    while (input.hasNext()) {
-                        String line = input.nextLine();
+                        // Let's loop through each line of the file
+                        while (input.hasNext()) {
+                            String line = input.nextLine();
+                
+                            // Now, check if this line contains our keyword. If it does, print the line
+                            if (line.contains(word)) {
+                                String[] splitter = line.split(";");
+                                String write = splitter[3];
+                                String dates = splitter[2];
+                                String[] date = dates.split("-");
+                                Calendar cal = Calendar.getInstance();
+                                cal.set(Calendar.DATE, Integer.parseInt(date[2]));
+                                cal.set(Calendar.YEAR,Integer.parseInt(date[0]));
+                                cal.set(Calendar.MONTH,Integer.parseInt(date[1])-1);
+                                Date d = cal.getTime();
+                                File myObj = new File("CriticalPathDays.txt");
+                                Scanner myReader = new Scanner(myObj);
+                                while (myReader.hasNextLine()) {
+                                    String data = myReader.nextLine();
+                                    txtDays.setText("This Project will take " + data + " days");
+                                    Dayadd = Integer.parseInt(data);
 
-                        // Now, check if this line contains our keyword. If it does, print the line
-                        if (line.contains(word)) {
-                            String[] splitter = line.split(";");
-                            String write = splitter[3];
-                            String team = splitter[1];
-                            txtTeam.setText(team);
-                            String replace1 = write.replace("[", " ").replace("]", " ");
-                            String[] replaced = replace1.split(",");
-                            for (int a = 0; a < replaced.length; a++) {
-                                String put = replaced[a];
-                                progress = assignteamname.addprogress(put);
-                                progress.toString();
+                                }
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                cal.add(Calendar.DATE, Dayadd); // Adding 5 days
+                                String output = sdf.format(cal.getTime());
+                                txtFinDate.setText(output);
+                                String team = splitter[1];
+                                txtTeam.setText(team);
+                                String replace1 = write.replace("[", " ").replace("]", " ");
+                                String[] replaced = replace1.split(",");
+                                for (int a = 0; a < replaced.length; a++) {
+                                    String put = replaced[a];
+                                    progress = assignteamname.addprogress(put);
+                                    progress.toString();
+                                }
+                                br.close();
                             }
-                            br.close();
                         }
-                    }
-                    input.close();
-                } catch (FileNotFoundException ex) {
+                        input.close();
+                    } catch (FileNotFoundException ex) {
 
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+
+
+                    try {
+                        File file = new File("Tasks.txt");
+                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        String firstLine = br.readLine().trim();
+                        String[] columnsName = firstLine.split(",");
+                        DefaultTableModel model = (DefaultTableModel) TableTasks.getModel();
+                        model.setColumnIdentifiers(columnsName);
+                        model.setRowCount(0);
+                        Object[] tableLines = br.lines().toArray();
+                        for (int i = 0; i < tableLines.length; i++) {
+                            String line = tableLines[i].toString().trim();
+                            String[] dataRow = line.split("/");
+                            model.addRow(dataRow);
+                        }
+                        br.close();
+                        CriticalPath.main();
+
+                        File myObj = new File("CriticalPathDays.txt");
+                        Scanner myReader = new Scanner(myObj);
+                        while (myReader.hasNextLine()) {
+                            String data = myReader.nextLine();
+                            txtDays.setText("This Project will take " + data + " days");
+
+
+                        }
+                        myReader.close();
+                    } catch (Exception ex) {
+
+                    }
+                    try {
+                        File myObj = new File("InitialNodes.txt");
+                        Scanner myReader = new Scanner(myObj);
+                        while (myReader.hasNextLine()) {
+                            String data = myReader.nextLine();
+                            txtInitialNodes.setText(data);
+                        }
+                        myReader.close();
+                    } catch (Exception ex) {
+
+                    }
+                    try {
+                        File file = new File("CriticalPath.txt");
+                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        String firstLine = br.readLine().trim();
+                        String[] columnsName = firstLine.split(",");
+                        DefaultTableModel model = (DefaultTableModel) JTableCriticalPath.getModel();
+                        model.setColumnIdentifiers(columnsName);
+                        model.setRowCount(0);
+                        Object[] tableLines = br.lines().toArray();
+                        for (int i = 0; i < tableLines.length; i++) {
+                            String line = tableLines[i].toString().trim();
+                            String[] dataRow = line.split("/");
+                            model.addRow(dataRow);
+                        }
+                        br.close();
+                    } catch (Exception ex) {
+
+                    }
                 }
+                if (scalaCheckBox.isSelected()) {
+                    ProjectsKt.rewrite();
+                    try {
+                        String word = JcbProjects.getSelectedItem().toString();
+                        File file = new File(filePath2);
+                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        Scanner input = new Scanner(new File(filePath2));
+                        Integer Dayadd = 1;
 
+                        // Let's loop through each line of the file
+                        while (input.hasNext()) {
+                            String line = input.nextLine();
 
-                try {
-                    File file = new File("Tasks.txt");
-                    BufferedReader br = new BufferedReader(new FileReader(file));
-                    String firstLine = br.readLine().trim();
-                    String[] columnsName = firstLine.split(",");
-                    DefaultTableModel model = (DefaultTableModel) TableTasks.getModel();
-                    model.setColumnIdentifiers(columnsName);
-                    model.setRowCount(0);
-                    Object[] tableLines = br.lines().toArray();
-                    for (int i = 0; i < tableLines.length; i++) {
-                        String line = tableLines[i].toString().trim();
-                        String[] dataRow = line.split("/");
-                        model.addRow(dataRow);
+                            // Now, check if this line contains our keyword. If it does, print the line
+                            if (line.contains(word)) {
+                                String[] splitter = line.split(";");
+                                String write = splitter[3];
+                                String dates = splitter[2];
+                                String[] date = dates.split("-");
+                                Calendar cal = Calendar.getInstance();
+                                cal.set(Calendar.DATE, Integer.parseInt(date[2]));
+                                cal.set(Calendar.YEAR, Integer.parseInt(date[0]));
+                                cal.set(Calendar.MONTH, Integer.parseInt(date[1]) - 1);
+                                Date d = cal.getTime();
+                                File myObj = new File("CriticalPathDays.txt");
+                                Scanner myReader = new Scanner(myObj);
+                                while (myReader.hasNextLine()) {
+                                    String data = myReader.nextLine();
+                                    txtDays.setText("This Project will take " + data + " days");
+                                    Dayadd = Integer.parseInt(data);
+
+                                }
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                cal.add(Calendar.DATE, Dayadd); // Adding 5 days
+                                String output = sdf.format(cal.getTime());
+                                txtFinDate.setText(output);
+                                String team = splitter[1];
+                                txtTeam.setText(team);
+                                String replace1 = write.replace("[", " ").replace("]", " ");
+                                String[] replaced = replace1.split(",");
+                                for (int a = 0; a < replaced.length; a++) {
+                                    String put = replaced[a];
+                                    progress = assignteamname.addprogress(put);
+                                    progress.toString();
+                                }
+                                br.close();
+                            }
+                        }
+                        input.close();
+                    } catch (FileNotFoundException ex) {
+
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
                     }
-                    br.close();
-                    CriticalPath.main();
 
-                    File myObj = new File("CriticalPathDays.txt");
-                    Scanner myReader = new Scanner(myObj);
-                    while (myReader.hasNextLine()) {
-                        String data = myReader.nextLine();
-                        txtDays.setText("This Project will take " + data + " days");
 
+                    try {
+                        File file = new File("Tasks.txt");
+                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        String firstLine = br.readLine().trim();
+                        String[] columnsName = firstLine.split(",");
+                        DefaultTableModel model = (DefaultTableModel) TableTasks.getModel();
+                        model.setColumnIdentifiers(columnsName);
+                        model.setRowCount(0);
+                        Object[] tableLines = br.lines().toArray();
+                        for (int i = 0; i < tableLines.length; i++) {
+                            String line = tableLines[i].toString().trim();
+                            String[] dataRow = line.split("/");
+                            model.addRow(dataRow);
+                        }
+                        br.close();
+                        CriticalPath.main();
+
+                        File myObj = new File("CriticalPathDays.txt");
+                        Scanner myReader = new Scanner(myObj);
+                        while (myReader.hasNextLine()) {
+                            String data = myReader.nextLine();
+                            txtDays.setText("This Project will take " + data + " days");
+
+
+                        }
+                        myReader.close();
+                    } catch (Exception ex) {
 
                     }
-                    myReader.close();
-                } catch (Exception ex) {
+                    try {
+                        File myObj = new File("InitialNodes.txt");
+                        Scanner myReader = new Scanner(myObj);
+                        while (myReader.hasNextLine()) {
+                            String data = myReader.nextLine();
+                            txtInitialNodes.setText(data);
+                        }
+                        myReader.close();
+                    } catch (Exception ex) {
 
-                }
-                try {
-                    File myObj = new File("InitialNodes.txt");
-                    Scanner myReader = new Scanner(myObj);
-                    while (myReader.hasNextLine()) {
-                        String data = myReader.nextLine();
-                        txtInitialNodes.setText(data);
                     }
-                    myReader.close();
-                } catch (Exception ex) {
+                    try {
+                        File file = new File("CriticalPath.txt");
+                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        String firstLine = br.readLine().trim();
+                        String[] columnsName = firstLine.split(",");
+                        DefaultTableModel model = (DefaultTableModel) JTableCriticalPath.getModel();
+                        model.setColumnIdentifiers(columnsName);
+                        model.setRowCount(0);
+                        Object[] tableLines = br.lines().toArray();
+                        for (int i = 0; i < tableLines.length; i++) {
+                            String line = tableLines[i].toString().trim();
+                            String[] dataRow = line.split("/");
+                            model.addRow(dataRow);
+                        }
+                        br.close();
+                    } catch (Exception ex) {
 
-                }
-                try {
-                    File file = new File("CriticalPath.txt");
-                    BufferedReader br = new BufferedReader(new FileReader(file));
-                    String firstLine = br.readLine().trim();
-                    String[] columnsName = firstLine.split(",");
-                    DefaultTableModel model = (DefaultTableModel) JTableCriticalPath.getModel();
-                    model.setColumnIdentifiers(columnsName);
-                    model.setRowCount(0);
-                    Object[] tableLines = br.lines().toArray();
-                    for (int i = 0; i < tableLines.length; i++) {
-                        String line = tableLines[i].toString().trim();
-                        String[] dataRow = line.split("/");
-                        model.addRow(dataRow);
                     }
-                    br.close();
-                } catch (Exception ex) {
-
-                }
-            }
+                }}
         });
 
         confirmButton.setEnabled(false);

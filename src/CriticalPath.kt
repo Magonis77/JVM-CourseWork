@@ -2,23 +2,23 @@ import java.io.*
 
 fun main() {
     val fileName1 = "CriticalPath.txt"
-    val myfile1 = File(fileName1)
+    val file1 = File(fileName1)
 
-    myfile1.printWriter().use { out ->
+    file1.printWriter().use { out ->
 
         out.write("Task, Earliest Start , Earliest Finish , Latest Start, Latest Finish, Slack, Critical?")
     }
     val fileName2 = "InitialNodes.txt"
-    val myfile2 = File(fileName2)
+    val file2 = File(fileName2)
 
-    myfile2.printWriter().use { out ->
+    file2.printWriter().use { out ->
 
         out.write("")
     }
     val fileName3 = "CriticalPathDays.txt"
-    val myfile3 = File(fileName3)
+    val file3 = File(fileName3)
 
-    myfile3.printWriter().use { out ->
+    file3.printWriter().use { out ->
 
         out.write("")
     }
@@ -36,10 +36,10 @@ fun main() {
         val split: List<String> = befsplit.split("/")
         val int1 = split[2].replace("days", "").replace(" ", "").toInt()
         val start = Task(split[1], int1)
-        val allTasks = hashSetOf(start)
+        val TasksTogether = hashSetOf(start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 2){
         val befsplit = inputString.replace("%", "/")
@@ -49,10 +49,10 @@ fun main() {
         val end = Task(split[4], int2)
         val start = Task(split[1], int1, end)
 
-        val allTasks = hashSetOf(end, start)
+        val TasksTogether = hashSetOf(end, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 3){
         val befsplit = inputString.replace("%", "/")
@@ -64,10 +64,10 @@ fun main() {
         val A = Task(split[4], int2, end)
         val start = Task(split[1], int1, A)
 
-        val allTasks = hashSetOf(end, A, start)
+        val TasksTogether = hashSetOf(end, A, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 4){
         val befsplit = inputString.replace("%", "/")
@@ -81,10 +81,10 @@ fun main() {
         val F = Task(split[4], int2, A)
         val start = Task(split[1], int1, F)
 
-        val allTasks = hashSetOf(end, A, F, start)
+        val TasksTogether = hashSetOf(end, A, F, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 5){
         val befsplit = inputString.replace("%", "/")
@@ -100,10 +100,10 @@ fun main() {
         val Q = Task(split[4], int2, F, A)
         val start = Task(split[1], int1, Q)
 
-        val allTasks = hashSetOf(end, A, F, Q, start)
+        val TasksTogether = hashSetOf(end, A, F, Q, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 6){
         val befsplit = inputString.replace("%", "/")
@@ -120,10 +120,10 @@ fun main() {
         val X = Task(split[7], int3, F, A)
         val Q = Task(split[4], int2, A, X)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, F, A, X, Q, start)
+        val TasksTogether = hashSetOf(end, F, A, X, Q, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 7){
         val befsplit = inputString.replace("%", "/")
@@ -142,10 +142,10 @@ fun main() {
         val X = Task(split[7], int3, F, A, Z)
         val Q = Task(split[4], int2, A, X, F)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, Z, F, A, X, Q, start)
+        val TasksTogether = hashSetOf(end, Z, F, A, X, Q, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 8){
         val befsplit = inputString.replace("%", "/")
@@ -166,10 +166,10 @@ fun main() {
         val X = Task(split[7], int3, F, A, Z, G)
         val Q = Task(split[4], int2, A, X, F, Z)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, G, Z, F, A, X, Q, start)
+        val TasksTogether = hashSetOf(end, G, Z, F, A, X, Q, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 9){
         val befsplit = inputString.replace("%", "/")
@@ -192,10 +192,10 @@ fun main() {
         val X = Task(split[7], int3, F, A, Z)
         val Q = Task(split[4], int2, A, X, F)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, H, G, Z, F, A, X, Q, start)
+        val TasksTogether = hashSetOf(end, H, G, Z, F, A, X, Q, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
     if(i == 10){
         val befsplit = inputString.replace("%", "/")
@@ -220,14 +220,14 @@ fun main() {
         val X = Task(split[7], int3, F, A, Z)
         val Q = Task(split[4], int2, A, X, F)
         val start = Task(split[1], int1, Q)
-        val allTasks = hashSetOf(end, D, H, G, Z, F, A, X, Q, start)
+        val TasksTogether = hashSetOf(end, D, H, G, Z, F, A, X, Q, start)
 
-        calculateCriticalPath(allTasks)
-        prettyPrintResult(allTasks)
+        calcCPath(TasksTogether)
+        PrintRes(TasksTogether)
     }
 }
 
-fun calculateCriticalPath(tasks: Collection<Task>) {
+fun calcCPath(tasks: Collection<Task>) {
     // tasks whose critical cost has been calculated
     val completed = hashSetOf<Task>()
     // tasks whose critical cost needs to be calculated
@@ -267,13 +267,13 @@ fun calculateCriticalPath(tasks: Collection<Task>) {
         out.write(test)
 
     }
-    calculateLatest(tasks, maxCost)
-    calculateEarly(tasks)
+    calcLatest(tasks, maxCost)
+    calcLatest(tasks)
 }
 
-fun calculateLatest(tasks: Collection<Task>, maxCost: Int) = tasks.forEach { it.setLatest(maxCost) }
+fun calcLatest(tasks: Collection<Task>, maxCost: Int) = tasks.forEach { it.setLatest(maxCost) }
 
-fun calculateEarly(tasks: Collection<Task>) = initials(tasks).forEach {
+fun calcLatest(tasks: Collection<Task>) = initials(tasks).forEach {
     it.earlyStart = 0
     it.earlyFinish = it.cost
     it.setEarlyForDependencies()
@@ -295,7 +295,7 @@ fun initials(tasks: Collection<Task>): Collection<Task> {
     }
 }
 
-fun prettyPrintResult(tasks: Collection<Task>) {
+fun PrintRes(tasks: Collection<Task>) {
     val format = "%1$-10s %2$-5s %3$-5s %4$-5s %5$-5s %6$-5s %7$-10s\n"
     tasks.sortedWith { o1, o2 -> o1.name.compareTo(o2.name) }.forEach {
         try {

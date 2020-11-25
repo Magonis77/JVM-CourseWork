@@ -4,29 +4,35 @@ import java.util.Comparator
 
 import scala.collection.convert.ImplicitConversions.{`collection asJava`, `iterator asJava`}
 import scala.collection.immutable.HashSet
+import scala.collection.immutable.Nil.foreach
+import scala.concurrent.Await.result
+
 
 object CriticalPath {
 
-  var maxCost: Int = 0
+  var maxCost: Int = _
 
   var format: String = "%1$-10s %2$-5s %3$-5s %4$-5s %5$-5s %6$-5s %7$-10s\n"
 
   def main(args: Array[String]): Unit = {
     // The example dependency graph
     val end: Task = new Task("End", 0)
-    val F: Task = new Task("F", 2, end)
-    val A: Task = new Task("A", 3, end)
-    val X: Task = new Task("X", 4, F, A)
-    val Q: Task = new Task("Q", 2, A, X)
-    val start: Task = new Task("Start", 0, Q)
+    val F: Task = new Task("F", 2)
+    val A: Task = new Task("A", 3)
+    val X: Task = new Task("X", 4)
+    val Q: Task = new Task("Q", 2)
+    val start: Task = new Task("Start", 0)
     val allTasks: HashSet[Task] = HashSet(end, F, A, X, Q,start)
     val result: Array[Task] = criticalPath(allTasks)
     print(result)
-
+  CriticalPath
   }
 
-  class Task(var name: String, var cost: Int, dependencies: Task*) {
 
+
+  class Task(var name: String, var cost: Int) {
+
+    this.earlyFinish = -1
     // the cost of the task along the critical path
     var criticalCost: Int = 0
 
@@ -46,10 +52,11 @@ object CriticalPath {
     var dependencies: HashSet[Task] = new HashSet[Task]
     this.name = name
     this.cost = cost
+
     for (t <- dependencies) {
       this.dependencies.add(t)
     }
-    this.earlyFinish = -1
+
     def setLatest(): Unit = {
       latestStart = maxCost - criticalCost
       latestFinish = latestStart + cost
@@ -128,14 +135,14 @@ object CriticalPath {
       override def compare(o1: Task, o2: Task): Int =
         o1.name.compareTo(o2.name)
     })
-    ret
+    return ret
   }
 
   def calculateEarly(initials: HashSet[Task]): Unit = {
     for (initial <- initials) {
       initial.earlyStart = 0
       initial.earlyFinish = initial.cost
-      setEarly(initial)
+      return setEarly(initial)
     }
   }
 
@@ -146,7 +153,7 @@ object CriticalPath {
         t.earlyStart = completionTime
         t.earlyFinish = completionTime + t.cost
       }
-      setEarly(t)
+      return setEarly(t)
     }
   }
 
@@ -158,7 +165,7 @@ object CriticalPath {
     System.out.print("Initial nodes: ")
     for (t <- remaining) System.out.print(t.name + " ")
     System.out.print("\n\n")
-    remaining
+    return remaining
   }
 
   def maxCost(tasks: Set[Task]): Unit = {
