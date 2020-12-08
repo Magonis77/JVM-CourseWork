@@ -36,11 +36,12 @@ public class ManageTeams extends JFrame {
         this.pack();
         createteam = new CreateHandler();
         managing = new ManageHandler();
-
+        //Liss created to show members in the JList
         DefaultListModel liss = new DefaultListModel();
         File inputFile = new File("Teams.txt");
         File tempFile = new File("TempTeams.txt");
         try {
+            //Read from TXT file and add to the ComboBox
             String filePath1 = "Teams.txt";
             File file = new File(filePath1);
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -60,6 +61,7 @@ public class ManageTeams extends JFrame {
         File file = new File(filePath2);
 
         try {
+            //Read from TXT file and add to the ComboBox
             BufferedReader br = new BufferedReader(new FileReader(file));
             Object[] lines = br.lines().toArray();
 

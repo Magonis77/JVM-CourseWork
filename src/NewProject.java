@@ -39,6 +39,7 @@ public class NewProject extends JFrame {
         String filePath2 = "Teams.txt";
 
         try {
+            //Read from TXT file and add to the ComboBox
             File file = new File(filePath2);
             BufferedReader br = new BufferedReader(new FileReader(file));
             Object[] lines = br.lines().toArray();
@@ -86,8 +87,6 @@ public class NewProject extends JFrame {
                     Tasks.add(task);
                     tasks = assignteamname.addTasks(assignTask.getText(), txtDays.getText());
                     tasks.toString();
-                    // assignTask.setText("");
-                    // txtDays.setText("");
                     File file = new File(filePath);
 
                     try {

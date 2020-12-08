@@ -35,6 +35,7 @@ public class RecordProgress extends JFrame {
     private Projects projects;
     private ProjectsKt projectsKt;
     private CriticalPathKt CriticalPath;
+    private CPHandling CPHandler;
 
 
     RecordProgress() {
@@ -198,6 +199,7 @@ public class RecordProgress extends JFrame {
                 }
                 if (scalaCheckBox.isSelected()) {
                     ProjectsKt.rewrite();
+
                     try {
                         String word = JcbProjects.getSelectedItem().toString();
                         File file = new File(filePath2);

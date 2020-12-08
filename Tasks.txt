@@ -1,5 +1,1 @@
 Task Name, Days to complete, progress %
- gui / 5 days / 0 %
- functions / 5 days / 0 %
- kotlin / 5 days / 0 %
- convert to scala / 7 days / 0 % 

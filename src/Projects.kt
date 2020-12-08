@@ -8,6 +8,7 @@ fun read() {
     val inputString = inputStream.bufferedReader().use { it.readText() }
 
 }
+//Append the txt File so its reset
 fun rewrite(){
     val fileName = "Tasks.txt"
     val myfile = File(fileName)
@@ -29,6 +30,7 @@ data class Progress(var tasks: String){
 }
 
 class ProjectsHandler() {
+    //Add project
     fun addProject(name: String, team: String, tasks: String): Projects {
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         val date = Date(System.currentTimeMillis())
@@ -43,7 +45,7 @@ class ProjectsHandler() {
 
         return Projects(name = name, team = team, tasks = tasks)
     }
-
+    //Add Tasks
     fun addTasks(tasks: String, days: String): Tasks {
         val fileName = "Tasks.txt"
         val myfile = File(fileName)
@@ -54,7 +56,7 @@ class ProjectsHandler() {
         }
         return Tasks(tasks = tasks, days = days)
     }
-
+    //Add progress
     fun addprogress(tasks: String): Progress {
         val fileName = "Tasks.txt"
         val myfile = File(fileName)

@@ -11,6 +11,7 @@ data class teamname(var teamname: String){
 }
 
 class ManageHandler() {
+    //send from Team string to GUI
     fun sendlist(listing: String= "Team"):members{
         var list: String = listing
         var split = list.replace("[", ",").replace("]", "").replace(" ", "")
@@ -20,7 +21,7 @@ class ManageHandler() {
 
         return members(members)
     }
-
+    //GetTeamName from JTextField
     fun getteamname(teamname: String = "Team A"):teamname{
             var list: String = teamname
             var split = list.replace("[", ",").replace("]", "").replace(" ", "")

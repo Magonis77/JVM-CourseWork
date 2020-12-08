@@ -7,8 +7,9 @@ import javax.swing.DefaultListModel
 data class Teams(var name: String = "Team", var members: String) {
 
 }
-val liss: DefaultListModel<*> = DefaultListModel<Any?>()
+
 class CreateHandler() {
+    //Create Team
     fun createTeam(name: String, members: String):Teams{
         val fileName = "Teams.txt"
         val myfile = File(fileName)
