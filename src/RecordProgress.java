@@ -91,11 +91,11 @@ public class RecordProgress extends JFrame {
                         Scanner input = new Scanner(new File(filePath2));
                         Integer Dayadd = 1;
 
-                        // Let's loop through each line of the file
+
                         while (input.hasNext()) {
                             String line = input.nextLine();
                 
-                            // Now, check if this line contains our keyword. If it does, print the line
+
                             if (line.contains(word)) {
                                 String[] splitter = line.split(";");
                                 String write = splitter[3];
@@ -207,11 +207,11 @@ public class RecordProgress extends JFrame {
                         Scanner input = new Scanner(new File(filePath2));
                         Integer Dayadd = 1;
 
-                        // Let's loop through each line of the file
+
                         while (input.hasNext()) {
                             String line = input.nextLine();
 
-                            // Now, check if this line contains our keyword. If it does, print the line
+
                             if (line.contains(word)) {
                                 String[] splitter = line.split(";");
                                 String write = splitter[3];

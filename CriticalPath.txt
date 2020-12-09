@@ -1,1 +1,8 @@
 Task, Earliest Start , Earliest Finish , Latest Start, Latest Finish, Slack, Critical?
+Functions / 5/ 7/ 5/ 7/ 0/ Yes
+Gui / 0/ 5/ 0/ 5/ 0/ Yes
+Integration / 28/ 31/ 28/ 31/ 0/ Yes
+Kotlin / 7/ 17/ 7/ 17/ 0/ Yes
+Scala / 24/ 27/ 25/ 28/ 1/ No
+Testing / 24/ 28/ 24/ 28/ 0/ Yes
+lambda / 17/ 24/ 17/ 24/ 0/ Yes

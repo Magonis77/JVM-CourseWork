@@ -5,4 +5,5 @@ John
 Michael
 Big John
 Dom
-Big Bruce
+Daniel
+Jake

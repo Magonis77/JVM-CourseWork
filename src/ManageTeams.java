@@ -132,15 +132,15 @@ public class ManageTeams extends JFrame {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
                     int lineToRemove = cbteams.getSelectedIndex() + 1;
-                    String currentLine;
+                    String currLine;
                     int count = 0;
 
-                    while ((currentLine = reader.readLine()) != null) {
+                    while ((currLine = reader.readLine()) != null) {
                         count++;
                         if (count == lineToRemove) {
                             continue;
                         }
-                        writer.write(currentLine + System.getProperty("line.separator"));
+                        writer.write(currLine + System.getProperty("line.separator"));
                     }
                     int index = cbteams.getSelectedIndex();
                     cbteams.removeItemAt(index);
@@ -168,15 +168,15 @@ public class ManageTeams extends JFrame {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
                     int lineToRemove = cbteams.getSelectedIndex() + 1;
-                    String currentLine;
+                    String currLine;
                     int count = 0;
 
-                    while ((currentLine = reader.readLine()) != null) {
+                    while ((currLine = reader.readLine()) != null) {
                         count++;
                         if (count == lineToRemove) {
                             continue;
                         }
-                        writer.write(currentLine + System.getProperty("line.separator"));
+                        writer.write(currLine + System.getProperty("line.separator"));
                     }
                     int index = cbteams.getSelectedIndex();
                     cbteams.removeItemAt(index);
