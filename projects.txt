@@ -1,4 +1,4 @@
 Project Z;team c [Arny, Mary, Michael, Dom];2020-11-25;gui / 4 days / 0 %,factions / 15 days / 0 %,kotlin / 23 days / 0 %,
 Project N;Team F [Bob, Mary, Arny];2020-11-25;gui / 4 days / 0 %,kotlin / 4 days / 0 %,testing / 6 days / 0 %,
 Project Test;Team C [Mary, Arny, Michael];2020-11-25;[gui / 5 days / 0 %, functions / 5 days / 0 %, kotlin / 5 days / 0 %, convert to scala / 7 days / 0 %]
-Team Mega;Team J [Mary, Dom, Bob];2020-12-09;Gui / 5 days / 0 %,Functions / 2 days /100 %,Kotlin / 10 days / 40 %,lambda / 7 days / 0 %,Scala / 3 days / 0 %,Testing / 4 days / 0 %,Integration / 3 days / 0 %,
+Team Mega;Team J [Mary, Dom, Bob];2020-12-10;Gui / 5 days / 0 %,Functions / 2 days /100 %,Kotlin / 13 days / 0 %,lambda / 7 days / 0 %,Scala / 3 days / 0 %,Testing / 4 days / 0 %,Integration / 3 days / 0 %,

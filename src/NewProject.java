@@ -192,13 +192,6 @@ public class NewProject extends JFrame {
                             dialog.setVisible(true);
                             confirmSettingsCheckBox.setSelected(false);
                         } else {
-                            if ((projTitle.getText().equals("") && assignTask.getText().equals(""))) {
-                                JOptionPane optionPane = new JOptionPane("Please enter project title AND add at least 1 task.", JOptionPane.ERROR_MESSAGE);
-                                JDialog dialog = optionPane.createDialog("Error!");
-                                dialog.setAlwaysOnTop(true);
-                                dialog.setVisible(true);
-                                confirmSettingsCheckBox.setSelected(false);
-                            } else {
                                 if ((TableTasks != null && TableTasks.getModel().getRowCount() <= 0 ? true : false)) {
                                     JOptionPane optionPane = new JOptionPane("Please add at least 1 task.", JOptionPane.ERROR_MESSAGE);
                                     JDialog dialog = optionPane.createDialog("Error!");
@@ -244,8 +237,7 @@ public class NewProject extends JFrame {
                         }
                     }
                 }
-            }
-        });
+            });
 
         txtDays.addKeyListener(new KeyAdapter() {
             @Override
